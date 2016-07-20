@@ -52,12 +52,12 @@
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_spinner_textfield_background_material.xml"
     },
     {
-        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
-        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
-    },
-    {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\drawable\\abc_switch_thumb_material.xml",
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_switch_thumb_material.xml"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_ic_arrow_drop_right_black_24dp.xml"
     },
     {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\drawable\\abc_seekbar_thumb_material.xml",

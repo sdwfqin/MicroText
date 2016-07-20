@@ -2,4 +2,13 @@
     <string name="app_name">"微文"</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="main_exit">再按一次退出程序</string>
+    <string name="Communicate">互动</string>
+    <string name="nav_home_text">精美散文</string>
+    <string name="nav_meitu_text">美图美句</string>
+    <string name="nav_shouxie_text">手写每句</string>
+    <string name="nav_duibai_text">经典对白</string>
+    <string name="nav_Share_text">推荐好友</string>
+    <string name="nav_feedback_text">意见反馈</string>
+    <string name="nav_about_text">关于我们</string>
 </resources>

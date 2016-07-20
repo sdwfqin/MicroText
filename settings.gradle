@@ -1,1 +1,1 @@
-include ':app', ':MagicIndicatorDemo', ':magicindicator'
+include ':app', ':MagicIndicatorDemo', ':magicindicator', ':myapplication'
