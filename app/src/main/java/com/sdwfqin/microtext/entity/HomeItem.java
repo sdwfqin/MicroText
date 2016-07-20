@@ -7,8 +7,7 @@ public class HomeItem {
 
     private String mTitle;
     private String mContent;
-    private String mAuthor;
-    private String mReadNum;
+    private String mInfo;
     private String mUrl;
 
     public String getTitle() {
@@ -27,20 +26,12 @@ public class HomeItem {
         mContent = content;
     }
 
-    public String getAuthor() {
-        return mAuthor;
+    public String getInfo() {
+        return mInfo;
     }
 
-    public void setAuthor(String author) {
-        mAuthor = author;
-    }
-
-    public String getReadNum() {
-        return mReadNum;
-    }
-
-    public void setReadNum(String readNum) {
-        mReadNum = readNum;
+    public void setInfo(String info) {
+        mInfo = info;
     }
 
     public String getUrl() {
@@ -49,5 +40,15 @@ public class HomeItem {
 
     public void setUrl(String url) {
         mUrl = url;
+    }
+
+    @Override
+    public String toString() {
+        return "HomeItem{" +
+                "mTitle='" + mTitle + '\'' +
+                ", mContent='" + mContent + '\'' +
+                ", mInfo='" + mInfo + '\'' +
+                ", mUrl='" + mUrl + '\'' +
+                '}';
     }
 }

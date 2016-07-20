@@ -1,19 +1,28 @@
 package com.sdwfqin.microtext.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sdwfqin.microtext.R;
+import com.sdwfqin.microtext.activity.EssayContentActvity;
+import com.sdwfqin.microtext.entity.HomeItem;
 import com.sdwfqin.microtext.utils.AppConfig;
+import com.sdwfqin.microtext.utils.ShowToastUtils;
+import com.sdwfqin.microtext.view.LazyViewPager;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
@@ -24,6 +33,14 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.WrapPagerIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView;
 
+import org.apache.http.Header;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,15 +55,21 @@ public class HomeFragment extends Fragment {
     @InjectView(R.id.home_magic_indicator)
     MagicIndicator mHomeMagicIndicator;
     @InjectView(R.id.home_view_pager)
-    ViewPager mHomeViewPager;
+    LazyViewPager mHomeViewPager;
     private View mView;
 
-    private List<String> mDataList = new ArrayList<String>();
+    private final static String TAG = "MicroText";
+
+    private List<String> mIndicatorDataList = new ArrayList<String>();
+    private List<HomeItem> mDataList = new ArrayList<HomeItem>();
+    int i = 1;
+    private PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
+    private RecyclerViewAdapter mRecyclerViewAdapter;
 
     //加载标签数据
     {
         for (int i = 0; i < AppConfig.sHomeTitleList.length; i++) {
-            mDataList.add(AppConfig.sHomeTitleList[i]);
+            mIndicatorDataList.add(AppConfig.sHomeTitleList[i]);
         }
     }
 
@@ -54,7 +77,7 @@ public class HomeFragment extends Fragment {
 
         @Override
         public int getCount() {
-            return mDataList.size();
+            return mIndicatorDataList.size();
         }
 
         @Override
@@ -65,7 +88,7 @@ public class HomeFragment extends Fragment {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
 
-            return initRecyclerData(container,position);
+            return initRecyclerData(container, position);
         }
 
         @Override
@@ -77,6 +100,7 @@ public class HomeFragment extends Fragment {
         public int getItemPosition(Object object) {
             return POSITION_NONE;
         }
+
     };
 
 
@@ -88,7 +112,6 @@ public class HomeFragment extends Fragment {
         ButterKnife.inject(this, mView);
 
         initView();
-        initData();
         return mView;
     }
 
@@ -98,27 +121,40 @@ public class HomeFragment extends Fragment {
         ButterKnife.reset(this);
     }
 
-    private PullLoadMoreRecyclerView initRecyclerData(ViewGroup container, int position) {
-        PullLoadMoreRecyclerView mPullLoadMoreRecyclerView = new PullLoadMoreRecyclerView(container.getContext());
+    private PullLoadMoreRecyclerView initRecyclerData(ViewGroup container, final int position) {
+
+
+        mPullLoadMoreRecyclerView = new PullLoadMoreRecyclerView(container.getContext());
         mPullLoadMoreRecyclerView.setLinearLayout();
 
         //绑定的适配器
-        RecyclerViewAdapter mRecyclerViewAdapter = new RecyclerViewAdapter();
+        mRecyclerViewAdapter = new RecyclerViewAdapter();
         mPullLoadMoreRecyclerView.setFooterViewText(R.string.order_load_text);
         //设置刷新颜色
         mPullLoadMoreRecyclerView.setColorSchemeResources(android.R.color.holo_orange_dark, android.R.color.holo_blue_dark);
         mPullLoadMoreRecyclerView.setAdapter(mRecyclerViewAdapter);
 
+        mPullLoadMoreRecyclerView.setRefreshing(true);
+
+        //加载数据
+        mDataList.clear();
+        i = 1;
+        Log.e(TAG, "initRecyclerDataPosition: " + position);
+        initItemData(position);
+
         //调用下拉刷新和加载更多
         mPullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
             @Override
             public void onRefresh() {
-
+                i = 1;
+                mDataList.clear();
+                initItemData(position);
             }
 
             @Override
             public void onLoadMore() {
-
+                ++i;
+                initItemData(position);
             }
         });
 
@@ -133,7 +169,15 @@ public class HomeFragment extends Fragment {
         return mPullLoadMoreRecyclerView;
     }
 
-    private void initData() {
+    private void initItemData(int position) {
+
+        Log.e(TAG, "initItemData: ");
+
+        final String Url = AppConfig.sHomeUrl + AppConfig.sHomeCode[position] + i + ".html";
+        Log.e(TAG, "initItemData: url" + Url);
+
+        AsyncHttpClient ahc = new AsyncHttpClient();
+        ahc.get(Url, new MyResponseHandler());
     }
 
     private void initView() {
@@ -146,13 +190,13 @@ public class HomeFragment extends Fragment {
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
             public int getCount() {
-                return mDataList == null ? 0 : mDataList.size();
+                return mIndicatorDataList == null ? 0 : mIndicatorDataList.size();
             }
 
             @Override
             public IPagerTitleView getTitleView(Context context, final int index) {
                 SimplePagerTitleView simplePagerTitleView = new SimplePagerTitleView(context);
-                simplePagerTitleView.setText(mDataList.get(index));
+                simplePagerTitleView.setText(mIndicatorDataList.get(index));
                 simplePagerTitleView.setNormalColor(Color.parseColor("#333333"));
                 simplePagerTitleView.setSelectedColor(Color.parseColor("#e94220"));
                 simplePagerTitleView.setOnClickListener(new View.OnClickListener() {
@@ -173,8 +217,7 @@ public class HomeFragment extends Fragment {
         });
         mHomeMagicIndicator.setNavigator(commonNavigator);
 
-        mHomeViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-
+        mHomeViewPager.setOnPageChangeListener(new LazyViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 mHomeMagicIndicator.onPageScrolled(position, positionOffset, positionOffsetPixels);
@@ -207,24 +250,88 @@ public class HomeFragment extends Fragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-
+            holder.bindData(mDataList.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return 10;
+            return mDataList.size();
         }
 
         public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+            TextView home_items_title;
+            TextView home_items_content;
+            TextView home_items_info;
+
+            private HomeItem mHomeItem;
+
             public ViewHolder(View itemView) {
                 super(itemView);
+                itemView.setOnClickListener(this);
+
+                home_items_title = (TextView) itemView.findViewById(R.id.home_items_title);
+                home_items_content = (TextView) itemView.findViewById(R.id.home_items_content);
+                home_items_info = (TextView) itemView.findViewById(R.id.home_items_info);
+            }
+
+            public void bindData(HomeItem homeItem) {
+
+                mHomeItem = homeItem;
+                home_items_title.setText(mHomeItem.getTitle());
+                home_items_content.setText(mHomeItem.getContent());
+                home_items_info.setText(mHomeItem.getInfo());
+
             }
 
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(), EssayContentActvity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url",mHomeItem.getUrl());
+                bundle.putString("title",mHomeItem.getTitle());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
+        }
+    }
+
+    class MyResponseHandler extends AsyncHttpResponseHandler {
+        // 请求服务器成功时，此方法调用
+        @Override
+        public void onSuccess(int statusCode, Header[] headers, byte[] responseBody) {
+
+            try {
+                String doc = new String(responseBody, "GBK");
+                URLEncoder.encode(doc, "UTF-8");
+
+                Document mDocument = Jsoup.parse(doc);
+                Elements es = mDocument.getElementsByClass("cbody");
+                for (Element e : es) {
+                    HomeItem mHomeItem = new HomeItem();
+                    mHomeItem.setTitle(e.getElementsByClass("title").text().toString());
+                    mHomeItem.setContent(e.getElementsByClass("intro").text().toString());
+                    mHomeItem.setInfo(e.getElementsByClass("info").text().toString());
+                    mHomeItem.setUrl(e.getElementsByClass("title").attr("href").toString());
+
+                    mDataList.add(mHomeItem);
+                }
+
+                mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                mRecyclerViewAdapter.notifyDataSetChanged();
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+                mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+                ShowToastUtils.showToast(getActivity(), "数据异常");
+            }
+        }
+
+        // 请求失败此方法调用
+        @Override
+        public void onFailure(int statusCode, Header[] headers, byte[] responseBody, Throwable error) {
+
+            mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+            ShowToastUtils.showToast(getActivity(), "请求失败");
         }
     }
 }
