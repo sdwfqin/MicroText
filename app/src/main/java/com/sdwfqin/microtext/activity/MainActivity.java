@@ -60,7 +60,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /**设置MenuItem默认选中项**/
+        // 设置MenuItem默认选中项
         navigationView.getMenu().getItem(0).setChecked(true);
 
         switchFragment(new HomeFragment());

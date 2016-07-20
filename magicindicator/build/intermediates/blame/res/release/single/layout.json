@@ -140,12 +140,12 @@
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_action_bar_title_item.xml"
     },
     {
-        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines.xml",
-        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_lines.xml"
-    },
-    {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\layout\\abc_select_dialog_material.xml",
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\abc_select_dialog_material.xml"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_lines.xml",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\layout\\notification_template_lines.xml"
     },
     {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\layout\\notification_template_big_media.xml",

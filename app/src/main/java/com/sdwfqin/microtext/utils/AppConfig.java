@@ -7,6 +7,6 @@ package com.sdwfqin.microtext.utils;
  */
 public class AppConfig {
 
-    public final static String[] sTitleList = new String[]{"科技", "汽车", "互联网", "奇闻异事", "搞笑",
-            "段子", "趣图", "健康", "时尚", "教育", "游戏", "家居", "美食", "旅游", "历史", "情感"};
+    public final static String[] sHomeTitleList = new String[]{"首页", "原创美文", "经典文章",
+            "情感美文", "伤感文章", "美文随笔", "感人文章", "人生哲理", "长篇故事", "励志美文"};
 }

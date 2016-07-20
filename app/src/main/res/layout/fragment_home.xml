@@ -4,28 +4,15 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="HomeFragment"/>
+    <net.lucode.hackware.magicindicator.MagicIndicator
+        android:id="@+id/home_magic_indicator"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"/>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:orientation="vertical">-->
-
-    <!--<net.lucode.hackware.magicindicator.MagicIndicator-->
-        <!--android:id="@+id/magic_indicator"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="@dimen/navigator_common_height"-->
-        <!--android:background="@android:color/white"/>-->
-
-    <!--</LinearLayout>-->
-
-    <!--<android.support.v4.view.ViewPager-->
-        <!--android:id="@+id/view_pager"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@android:color/white"/>-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/home_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="5dp"/>
 
 </LinearLayout>
