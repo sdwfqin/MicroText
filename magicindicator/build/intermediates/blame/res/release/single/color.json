@@ -1,15 +1,15 @@
 [
     {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color\\abc_tint_spinner.xml"
+    },
+    {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\color\\abc_search_url_text.xml",
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color\\abc_search_url_text.xml"
     },
     {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\color\\abc_btn_colored_borderless_text_material.xml",
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color\\abc_btn_colored_borderless_text_material.xml"
-    },
-    {
-        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\color\\abc_tint_spinner.xml",
-        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\color\\abc_tint_spinner.xml"
     },
     {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\release\\color\\abc_secondary_text_material_light.xml",
