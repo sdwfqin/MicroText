@@ -12,7 +12,6 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
-import com.sdwfqin.microtext.entity.HomeItem;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
 
@@ -105,21 +104,29 @@ public class EssayContentActvity extends BaseActivity {
                         if (i == 0) {
                             i++;
                             continue;
-//                            sb.append("\n");
-//                            sb.append(me.text().toString());
-//                            sb.delete(0,sb.length());
                         }
 
                         sb.append(me.text().toString());
                         sb.append("\n");
-
-//                        if (me.text().trim().toString().equals("")) {
-//                            sb.append("\r\n");
-//                        } else {
-//                            sb.append(me.text().toString());
-//                        }
                     }
 
+                    if (sb.length() < 30) {
+                        sb.delete(0, sb.length());
+
+                        Elements elp = e.getElementsByTag("p");
+                        for (Element me : elp) {
+
+                            String[] t = me.text().toString().split("<br>");
+
+                            for (String mt : t){
+                                Log.e(TAG, mt );
+                            }
+
+                            sb.append(me.text().toString());
+                            sb.append("\n");
+                        }
+
+                    }
                 }
 
                 mEssayHead.setText(info);
