@@ -3,6 +3,7 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="main_exit">再按一次退出程序</string>
+    <string name="order_load_text">正在加载 。。。</string>
 
     <!-- 侧边栏 -->
     <string name="Communicate">互动</string>
@@ -13,4 +14,8 @@
     <string name="nav_Share_text">推荐好友</string>
     <string name="nav_feedback_text">意见反馈</string>
     <string name="nav_about_text">关于我们</string>
+
+    <!-- Home_items -->
+    <string name="items_read_num_text">浏览：</string>
+    <string name="items_author_text">作者：</string>
 </resources>

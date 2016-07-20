@@ -7,14 +7,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.utils.AppConfig;
+import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator;
@@ -43,7 +43,7 @@ public class HomeFragment extends Fragment {
 
     private List<String> mDataList = new ArrayList<String>();
 
-    //加载数据
+    //加载标签数据
     {
         for (int i = 0; i < AppConfig.sHomeTitleList.length; i++) {
             mDataList.add(AppConfig.sHomeTitleList[i]);
@@ -64,11 +64,8 @@ public class HomeFragment extends Fragment {
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
-            TextView textView = new TextView(container.getContext());
-            textView.setText(mDataList.get(position));
-            textView.setGravity(Gravity.CENTER);
-            container.addView(textView);
-            return textView;
+
+            return initRecyclerData(container,position);
         }
 
         @Override
@@ -82,6 +79,7 @@ public class HomeFragment extends Fragment {
         }
     };
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -92,6 +90,50 @@ public class HomeFragment extends Fragment {
         initView();
         initData();
         return mView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.reset(this);
+    }
+
+    private PullLoadMoreRecyclerView initRecyclerData(ViewGroup container, int position) {
+        PullLoadMoreRecyclerView mPullLoadMoreRecyclerView = new PullLoadMoreRecyclerView(container.getContext());
+        mPullLoadMoreRecyclerView.setLinearLayout();
+
+        //绑定的适配器
+        RecyclerViewAdapter mRecyclerViewAdapter = new RecyclerViewAdapter();
+        mPullLoadMoreRecyclerView.setFooterViewText(R.string.order_load_text);
+        //设置刷新颜色
+        mPullLoadMoreRecyclerView.setColorSchemeResources(android.R.color.holo_orange_dark, android.R.color.holo_blue_dark);
+        mPullLoadMoreRecyclerView.setAdapter(mRecyclerViewAdapter);
+
+        //调用下拉刷新和加载更多
+        mPullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
+            @Override
+            public void onRefresh() {
+
+            }
+
+            @Override
+            public void onLoadMore() {
+
+            }
+        });
+
+        //刷新结束
+        //mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+        //快速top
+        //mPullLoadMoreRecyclerView.scrollToTop();
+        //刷新items
+        //mRecyclerViewAdapter.notifyDataSetChanged();
+
+        container.addView(mPullLoadMoreRecyclerView);
+        return mPullLoadMoreRecyclerView;
+    }
+
+    private void initData() {
     }
 
     private void initView() {
@@ -150,13 +192,39 @@ public class HomeFragment extends Fragment {
         });
     }
 
-    private void initData() {
-    }
+
+    /**
+     * item适配器
+     */
+    class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_items, parent, false);
+            return new ViewHolder(view);
+        }
 
 
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.reset(this);
+        @Override
+        public void onBindViewHolder(ViewHolder holder, int position) {
+
+        }
+
+        @Override
+        public int getItemCount() {
+            return 10;
+        }
+
+        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+            public ViewHolder(View itemView) {
+                super(itemView);
+            }
+
+            @Override
+            public void onClick(View view) {
+
+            }
+        }
     }
 }

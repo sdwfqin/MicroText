@@ -9,19 +9,17 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/MagicIndicatorDemo" />
+            <option value="$PROJECT_DIR$/PullLoadLibrary" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/magicindicator" />
-            <option value="$PROJECT_DIR$/myapplication" />
           </set>
         </option>
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/MagicIndicatorDemo" />
+            <option value="$PROJECT_DIR$/PullLoadLibrary" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/magicindicator" />
-            <option value="$PROJECT_DIR$/myapplication" />
           </set>
         </option>
       </GradleProjectSettings>

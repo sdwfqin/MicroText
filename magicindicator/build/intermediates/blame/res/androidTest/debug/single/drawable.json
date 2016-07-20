@@ -20,12 +20,12 @@
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_edit_text_material.xml"
     },
     {
-        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_cab_background_top_material.xml",
-        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_cab_background_top_material.xml"
-    },
-    {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_list_selector_holo_dark.xml",
         "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_list_selector_holo_dark.xml"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_cab_background_top_material.xml",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\exploded-aar\\com.android.support\\appcompat-v7\\24.0.0\\res\\drawable\\abc_cab_background_top_material.xml"
     },
     {
         "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\magicindicator\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\abc_ratingbar_small_material.xml",

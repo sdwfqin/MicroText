@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MagicIndicatorDemo/MagicIndicatorDemo.iml" filepath="$PROJECT_DIR$/MagicIndicatorDemo/MagicIndicatorDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/MicroText.iml" filepath="$PROJECT_DIR$/MicroText.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PullLoadLibrary/PullLoadLibrary.iml" filepath="$PROJECT_DIR$/PullLoadLibrary/PullLoadLibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/magicindicator/magicindicator.iml" filepath="$PROJECT_DIR$/magicindicator/magicindicator.iml" />
-      <module fileurl="file://$PROJECT_DIR$/myapplication/myapplication.iml" filepath="$PROJECT_DIR$/myapplication/myapplication.iml" />
     </modules>
   </component>
 </project>
