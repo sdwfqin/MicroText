@@ -32,6 +32,7 @@ import butterknife.InjectView;
  * @version 1.0.0
  * @since 2016-07-18
  * @deprecated 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
+ * 项目地址：https://github.com/sdwfqin/MicroText
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
