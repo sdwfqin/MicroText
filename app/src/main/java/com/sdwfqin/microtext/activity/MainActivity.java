@@ -1,7 +1,9 @@
 package com.sdwfqin.microtext.activity;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -21,6 +23,10 @@ import com.sdwfqin.microtext.fragment.DuiBaiFragment;
 import com.sdwfqin.microtext.fragment.HomeFragment;
 import com.sdwfqin.microtext.fragment.MeiTuFragment;
 import com.sdwfqin.microtext.fragment.ShouXieFragment;
+import com.sdwfqin.microtext.utils.ShowToastUtils;
+import com.umeng.fb.FeedbackAgent;
+import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.PushAgent;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -31,7 +37,8 @@ import butterknife.InjectView;
  * @author sdwfqin
  * @version 1.0.0
  * @since 2016-07-18
- * @deprecated 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
+ * <p>
+ * 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
  * 项目地址：https://github.com/sdwfqin/MicroText
  */
 public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -41,6 +48,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private FeedbackAgent agent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +73,29 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         navigationView.getMenu().getItem(0).setChecked(true);
 
         switchFragment(new HomeFragment());
+
+        // 友盟用户反馈
+        agent = new FeedbackAgent(MainActivity.this);
+        agent.sync();
+        agent.openFeedbackPush();
+        // 消息推送
+        PushAgent mPushAgent = PushAgent.getInstance(MainActivity.this);
+        mPushAgent.enable();
+        PushAgent.getInstance(MainActivity.this).onAppStart();
+
+        mPushAgent.enable(new IUmengRegisterCallback() {
+
+            @Override
+            public void onRegistered(final String registrationId) {
+                new Handler().post(new Runnable() {
+                    @Override
+                    public void run() {
+                        //onRegistered方法的参数registrationId即是device_token
+                        ShowToastUtils.showToast(MainActivity.this,registrationId);
+                    }
+                });
+            }
+        });
 
     }
 
@@ -130,9 +161,17 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_duibai) {
             switchFragment(new DuiBaiFragment());
         } else if (id == R.id.nav_share) {
-
+            /** 分享 **/
+            String shareContent = MainActivity.this.getResources().getString(
+                    R.string.share_content);
+            Intent intent = new Intent(Intent.ACTION_SEND); // 启动分享发送的属性
+            intent.setType("text/plain"); // 分享发送的数据类型
+            intent.putExtra(Intent.EXTRA_TEXT, shareContent); // 分享的内容
+            startActivity(Intent.createChooser(intent, "选择分享"));// 目标应用选择对话框的标题
         } else if (id == R.id.nav_feedback) {
-
+            agent.setWelcomeInfo("你好，欢迎您反馈使用产品的建议和感受");
+            agent.closeAudioFeedback();
+            agent.startFeedbackActivity();
         } else if (id == R.id.nav_about) {
 
         }

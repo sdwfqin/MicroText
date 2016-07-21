@@ -33,4 +33,7 @@ dependencies {
     compile 'com.android.support:design:24.0.0'
     compile project(':magicindicator')
     compile project(':PullLoadLibrary')
+    compile files('libs/umeng-analytics-v6.0.1.jar')
+    compile files('libs/utdid4all-1.0.4.jar')
+    compile 'com.umeng:fb:5.4.0'
 }

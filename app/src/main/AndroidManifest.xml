@@ -2,8 +2,17 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.sdwfqin.microtext">
 
-    <!-- 网络 -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- 友盟用户统计 -->
+    <!-- 检测联网方式，区分用户设备使用的是2G、3G或是WiFi -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取用户设备的mac地址，在平板设备上，无法通过imei标示设备，我们会将mac地址作为用户的唯一标识 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <!-- 允许应用程序联网，以便向我们的服务器端发送数据。 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- 获取用户设备的IMEI，通过IMEI和mac来唯一的标识用户。 -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,7 +28,26 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.EssayContentActvity" />
+        <!-- 文章详情页 -->
+        <activity android:name=".activity.EssayContentActvity"/>
+
+        <!-- 友盟 -->
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="57907e89e0f55a7363003391">
+        </meta-data>
+        <meta-data
+            android:name="UMENG_CHANNEL"
+            android:value="Umeng">
+        </meta-data>
+        <meta-data
+            android:name="UMENG_MESSAGE_SECRET"
+            android:value="3cb32e14578dea5400de8e71903d56c0" >
+        </meta-data>
+        <!-- 友盟用户反馈 -->
+        <activity
+            android:name="com.umeng.fb.ConversationActivity"/>
+
     </application>
 
 </manifest>

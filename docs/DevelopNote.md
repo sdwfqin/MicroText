@@ -30,3 +30,15 @@ FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
     android:layout_margin="@dimen/fab_margin"
     android:src="@android:drawable/ic_dialog_email"/>
 ```
+
+# 安卓6.0权限问题
+
+https://developer.android.com/training/permissions/requesting.html
+
+# 限定屏幕方向
+
+``` xml
+AndroidManifest.xml文件的<activity/>标签
+android:screenOrientation="landscape"是限制此页面横屏显示，
+android:screenOrientation="portrait"是限制此页面数竖屏显示。
+```
