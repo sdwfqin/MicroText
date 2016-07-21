@@ -33,7 +33,7 @@ import butterknife.InjectView;
  * @since 2016-07-18
  * @deprecated 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
  */
-public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends BaseActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     @InjectView(R.id.toolbar_title)
     TextView mToolbarTitle;
