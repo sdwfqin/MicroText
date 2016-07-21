@@ -25,10 +25,24 @@
         tools:openDrawer="start"
         >
 
-        <include
-            layout="@layout/app_bar_main"
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <FrameLayout
+                    android:id="@+id/main_fragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                </FrameLayout>
+            </RelativeLayout>
+
+        </android.support.design.widget.CoordinatorLayout>
 
         <!-- 侧栏 -->
         <android.support.design.widget.NavigationView

@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
@@ -65,6 +67,7 @@ public class HomeFragment extends Fragment {
     int i = 1;
     private PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
+    private FloatingActionButton mMFloatingActionButton;
 
     //加载标签数据
     {
@@ -112,6 +115,15 @@ public class HomeFragment extends Fragment {
         ButterKnife.inject(this, mView);
 
         initView();
+
+        mMFloatingActionButton = (FloatingActionButton) mView.findViewById(R.id.fab);
+        mMFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //底部小窗
+                mPullLoadMoreRecyclerView.scrollToTop();
+            }
+        });
         return mView;
     }
 
@@ -131,7 +143,7 @@ public class HomeFragment extends Fragment {
         mRecyclerViewAdapter = new RecyclerViewAdapter();
         mPullLoadMoreRecyclerView.setFooterViewText(R.string.order_load_text);
         //设置刷新颜色
-        mPullLoadMoreRecyclerView.setColorSchemeResources(android.R.color.holo_orange_dark, android.R.color.holo_blue_dark);
+        mPullLoadMoreRecyclerView.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_dark);
         mPullLoadMoreRecyclerView.setAdapter(mRecyclerViewAdapter);
 
         mPullLoadMoreRecyclerView.setRefreshing(true);

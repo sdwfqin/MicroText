@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <net.lucode.hackware.magicindicator.MagicIndicator
-        android:id="@+id/home_magic_indicator"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <com.sdwfqin.microtext.view.LazyViewPager
-        android:id="@+id/home_view_pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <net.lucode.hackware.magicindicator.MagicIndicator
+            android:id="@+id/home_magic_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"/>
 
-</LinearLayout>
+        <com.sdwfqin.microtext.view.LazyViewPager
+            android:id="@+id/home_view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_top"/>
+
+</android.support.design.widget.CoordinatorLayout>
