@@ -1,9 +1,9 @@
 package com.sdwfqin.microtext.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -23,9 +23,8 @@ import com.sdwfqin.microtext.fragment.DuiBaiFragment;
 import com.sdwfqin.microtext.fragment.HomeFragment;
 import com.sdwfqin.microtext.fragment.MeiTuFragment;
 import com.sdwfqin.microtext.fragment.ShouXieFragment;
-import com.sdwfqin.microtext.utils.ShowToastUtils;
 import com.umeng.fb.FeedbackAgent;
-import com.umeng.message.IUmengRegisterCallback;
+import com.umeng.message.MsgConstant;
 import com.umeng.message.PushAgent;
 
 import butterknife.ButterKnife;
@@ -49,6 +48,8 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private FeedbackAgent agent;
+    private Context mContext = MainActivity.this;
+    private PushAgent mPushAgent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,29 +75,20 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         switchFragment(new HomeFragment());
 
+        initUmeng();
+
+    }
+
+    private void initUmeng() {
         // 友盟用户反馈
-        agent = new FeedbackAgent(MainActivity.this);
+        agent = new FeedbackAgent(mContext);
         agent.sync();
         agent.openFeedbackPush();
         // 消息推送
-        PushAgent mPushAgent = PushAgent.getInstance(MainActivity.this);
+        mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+        //开启推送
         mPushAgent.enable();
-        PushAgent.getInstance(MainActivity.this).onAppStart();
-
-        mPushAgent.enable(new IUmengRegisterCallback() {
-
-            @Override
-            public void onRegistered(final String registrationId) {
-                new Handler().post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //onRegistered方法的参数registrationId即是device_token
-                        ShowToastUtils.showToast(MainActivity.this,registrationId);
-                    }
-                });
-            }
-        });
-
     }
 
     // 跳转Fragment
@@ -162,7 +154,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             switchFragment(new DuiBaiFragment());
         } else if (id == R.id.nav_share) {
             /** 分享 **/
-            String shareContent = MainActivity.this.getResources().getString(
+            String shareContent = mContext.getResources().getString(
                     R.string.share_content);
             Intent intent = new Intent(Intent.ACTION_SEND); // 启动分享发送的属性
             intent.setType("text/plain"); // 分享发送的数据类型

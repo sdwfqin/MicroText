@@ -1,1 +1,1 @@
-include ':app', ':magicindicator', ':PullLoadLibrary', ':PushSDK'
+include ':app', ':magicindicator', ':PullLoadLibrary', ':PushSDK', ':PushDemo'
