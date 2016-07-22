@@ -68,9 +68,6 @@ public class EssayContentActvity extends BaseActivity {
             mToolbarTitle.setText(title);
         }
 
-//        mEssayWeb.loadUrl(AppConfig.sHomePhoneUrl + url);
-//        mEssayWeb.loadData("lll", "text/html","Utf-8");
-
         AsyncHttpClient ahc = new AsyncHttpClient();
         ahc.get(AppConfig.sHomeUrl + url, new MyResponseHandler());
     }

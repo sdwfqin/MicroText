@@ -25,3 +25,18 @@ AndroidManifest.xml文件的<activity/>标签
 android:screenOrientation="landscape"是限制此页面横屏显示，
 android:screenOrientation="portrait"是限制此页面数竖屏显示。
 ```
+
+# WebView
+
+``` java
+// 处理乱码与图片显示
+Elements es = mDocument.getElementsByClass("content");
+
+StringBuffer sb = new StringBuffer().append(es.toString());
+sb.insert(sb.toString().indexOf("src=")+5,AppConfig.sHomeUrl);
+
+//设置默认为utf-8
+mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
+// mEssayWeb.loadData(es.toString(), "text/html; charset=UTF-8", null);
+mEssayWeb.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-8", null);
+```
