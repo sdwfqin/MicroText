@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,7 +19,6 @@ import com.sdwfqin.microtext.utils.ShowToastUtils;
 import org.apache.http.Header;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
@@ -45,6 +43,8 @@ public class EssayContentActvity extends BaseActivity {
     private final static String TAG = "MicroText";
     @InjectView(R.id.essay_web)
     WebView mEssayWeb;
+    @InjectView(R.id.essay_head)
+    TextView mEssayHead;
     private String url;
 
     @Override
@@ -98,12 +98,13 @@ public class EssayContentActvity extends BaseActivity {
                 Elements es = mDocument.getElementsByClass("content");
 
                 StringBuffer sb = new StringBuffer().append(es.toString());
-                sb.insert(sb.toString().indexOf("src=")+5,AppConfig.sHomeUrl);
+                sb.insert(sb.toString().indexOf("src=") + 5, AppConfig.sHomeUrl);
 
                 //设置默认为utf-8
                 mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
                 // mEssayWeb.loadData(es.toString(), "text/html; charset=UTF-8", null);
                 mEssayWeb.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-8", null);
+                mEssayHead.setText(info);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 ShowToastUtils.showToast(EssayContentActvity.this, "数据异常");

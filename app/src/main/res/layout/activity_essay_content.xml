@@ -2,54 +2,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical">
+              android:orientation="vertical"
+              android:background="#ffffff">
 
-    <include layout="@layout/main_toolbar" />
+    <include layout="@layout/main_toolbar"/>
 
-    <WebView
-        android:id="@+id/essay_web"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
-    </WebView>
-
-    <!--<ScrollView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent">-->
-
-    <!--<LinearLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:orientation="vertical">-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/essay_head"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_marginTop="5dp"-->
-    <!--android:layout_marginRight="5dp"-->
-    <!--android:layout_marginLeft="5dp"-->
-    <!--android:layout_marginBottom="3dp"-->
-    <!--android:ellipsize="end"-->
-    <!--android:maxLines="1"-->
-    <!--android:gravity="center_horizontal"/>-->
-
-    <!--<ImageView-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="1dp"-->
-    <!--android:background="@color/colorGray"-->
-    <!--android:layout_marginRight="5dp"-->
-    <!--android:layout_marginLeft="5dp"/>-->
-
-    <!--<TextView-->
-    <!--android:id="@+id/essay_content"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_margin="5dp"-->
-    <!--android:textSize="18sp"/>-->
-
-    <!--</LinearLayout>-->
-    <!--</ScrollView>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ffffff"
+            android:orientation="vertical">
 
 
+            <WebView
+                android:id="@+id/essay_web"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+            </WebView>
+
+            <TextView
+                android:id="@+id/essay_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
+                android:ellipsize="end"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:textColor="#000000"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
 </LinearLayout>
