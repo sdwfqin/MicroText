@@ -8,6 +8,7 @@ package com.sdwfqin.microtext.utils;
 public class AppConfig {
 
     public final static String sHomeUrl = "http://www.lookmw.cn";
+    public final static String sHomePhoneUrl = "http://m.lookmw.cn";
 
     public final static String[] sHomeTitleList = new String[]{"原创美文", "经典文章",
             "情感美文", "伤感文章", "美文随笔", "感人文章", "人生哲理", "长篇故事"};

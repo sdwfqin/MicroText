@@ -1,35 +1,18 @@
-## AndroidStudio创建项目并上传到github ##
+# AndroidStudio创建项目并上传到github ##
 
 `VCS  ->  Import into Version Control  ->  Share Project on GitHub`
 
-## FloatingActionButton && Snackbar ##
+# 大约是建立时的一些比较新的API
 
-``` java
-FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //底部小窗
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_SHORT)
-                        .setAction("执行动作", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Toast.makeText(MainActivity.this,"Snackbar 动作",Toast.LENGTH_SHORT).show();
-                            }
-                        }).show();
-            }
-        });
-```
-
-``` xml
-<android.support.design.widget.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="bottom|end"
-    android:layout_margin="@dimen/fab_margin"
-    android:src="@android:drawable/ic_dialog_email"/>
-```
+1. Snackbar
+2. FloatingActionButton
+3. AppBarLayout
+4. toolbar
+5. DrawerLayout
+6. CoordinatorLayout
+7. NavigationView
+8. NestedScrolling
+9. CollapsingToolbarLayout 可以折叠的Toolbar
 
 # 安卓6.0权限问题
 

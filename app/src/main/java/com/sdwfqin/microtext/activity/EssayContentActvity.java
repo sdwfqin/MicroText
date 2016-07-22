@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -41,10 +43,8 @@ public class EssayContentActvity extends BaseActivity {
     ImageView mToolbarReturnText;
 
     private final static String TAG = "MicroText";
-    @InjectView(R.id.essay_head)
-    TextView mEssayHead;
-    @InjectView(R.id.essay_content)
-    TextView mEssayContent;
+    @InjectView(R.id.essay_web)
+    WebView mEssayWeb;
     private String url;
 
     @Override
@@ -67,6 +67,9 @@ public class EssayContentActvity extends BaseActivity {
         if (title != null) {
             mToolbarTitle.setText(title);
         }
+
+//        mEssayWeb.loadUrl(AppConfig.sHomePhoneUrl + url);
+//        mEssayWeb.loadData("lll", "text/html","Utf-8");
 
         AsyncHttpClient ahc = new AsyncHttpClient();
         ahc.get(AppConfig.sHomeUrl + url, new MyResponseHandler());
@@ -95,43 +98,15 @@ public class EssayContentActvity extends BaseActivity {
                 String info = mDocument.getElementsByClass("info").text().toString();
                 info = info.substring(0, info.length() - 6);
 
-                StringBuffer sb = new StringBuffer();
                 Elements es = mDocument.getElementsByClass("content");
-                int i = 0;
-                for (Element e : es) {
-                    Elements els = e.getElementsByTag("div");
-                    for (Element me : els) {
-                        if (i == 0) {
-                            i++;
-                            continue;
-                        }
 
-                        sb.append(me.text().toString());
-                        sb.append("\n");
-                    }
+                StringBuffer sb = new StringBuffer().append(es.toString());
+                sb.insert(sb.toString().indexOf("src=")+5,AppConfig.sHomeUrl);
 
-                    if (sb.length() < 30) {
-                        sb.delete(0, sb.length());
-
-                        Elements elp = e.getElementsByTag("p");
-                        for (Element me : elp) {
-
-                            String[] t = me.text().toString().split("<br>");
-
-                            for (String mt : t){
-                                Log.e(TAG, mt );
-                            }
-
-                            sb.append(me.text().toString());
-                            sb.append("\n");
-                        }
-
-                    }
-                }
-
-                mEssayHead.setText(info);
-                mEssayContent.setText(sb.toString());
-                Log.e(TAG, sb.toString());
+                //设置默认为utf-8
+                mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
+                // mEssayWeb.loadData(es.toString(), "text/html; charset=UTF-8", null);
+                mEssayWeb.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-8", null);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 ShowToastUtils.showToast(EssayContentActvity.this, "数据异常");

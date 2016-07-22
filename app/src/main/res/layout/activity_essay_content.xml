@@ -6,43 +6,50 @@
 
     <include layout="@layout/main_toolbar" />
 
-    <ScrollView
+    <WebView
+        android:id="@+id/essay_web"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    </WebView>
 
-            <TextView
-                android:id="@+id/essay_head"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginBottom="3dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:gravity="center_horizontal"/>
+    <!--<ScrollView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent">-->
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/colorGray"
-                android:layout_marginRight="5dp"
-                android:layout_marginLeft="5dp"/>
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical">-->
 
-            <TextView
-                android:id="@+id/essay_content"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textSize="18sp"/>
+    <!--<TextView-->
+    <!--android:id="@+id/essay_head"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="5dp"-->
+    <!--android:layout_marginRight="5dp"-->
+    <!--android:layout_marginLeft="5dp"-->
+    <!--android:layout_marginBottom="3dp"-->
+    <!--android:ellipsize="end"-->
+    <!--android:maxLines="1"-->
+    <!--android:gravity="center_horizontal"/>-->
 
-        </LinearLayout>
-    </ScrollView>
+    <!--<ImageView-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="1dp"-->
+    <!--android:background="@color/colorGray"-->
+    <!--android:layout_marginRight="5dp"-->
+    <!--android:layout_marginLeft="5dp"/>-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/essay_content"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="5dp"-->
+    <!--android:textSize="18sp"/>-->
+
+    <!--</LinearLayout>-->
+    <!--</ScrollView>-->
 
 
 </LinearLayout>
