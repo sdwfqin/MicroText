@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_title_bar_back.9.png",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_title_bar_back.9.png"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_title_bar_more.9.png",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_title_bar_more.9.png"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_activity_sendfeedback_addpicture.9.png",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_activity_sendfeedback_addpicture.9.png"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_title_bar_close.9.png",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_title_bar_close.9.png"
+    },
+    {
+        "merged": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_activity_sendfeedback_newimagewithdelete_delete_drawable.9.png",
+        "source": "F:\\WorkSpace\\AndroidStudioProjects\\MicroText\\OneSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-xxhdpi-v4\\com_taobao_tae_sdk_web_view_activity_sendfeedback_newimagewithdelete_delete_drawable.9.png"
+    }
+]
