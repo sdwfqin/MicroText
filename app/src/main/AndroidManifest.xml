@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".base.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/icon"
         android:label="@string/app_name"
@@ -44,9 +45,6 @@
             android:name="UMENG_MESSAGE_SECRET"
             android:value="3cb32e14578dea5400de8e71903d56c0" >
         </meta-data>
-        <!-- 友盟用户反馈 -->
-        <activity
-            android:name="com.umeng.fb.ConversationActivity"/>
 
     </application>
 

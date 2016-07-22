@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.util.ArrayMap;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,15 +18,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
 import com.sdwfqin.microtext.fragment.DuiBaiFragment;
 import com.sdwfqin.microtext.fragment.HomeFragment;
 import com.sdwfqin.microtext.fragment.MeiTuFragment;
 import com.sdwfqin.microtext.fragment.ShouXieFragment;
-import com.umeng.fb.FeedbackAgent;
 import com.umeng.message.MsgConstant;
 import com.umeng.message.PushAgent;
+
+import java.util.Map;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -47,7 +50,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private Toolbar mToolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private FeedbackAgent agent;
     private Context mContext = MainActivity.this;
     private PushAgent mPushAgent;
 
@@ -75,17 +77,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         switchFragment(new HomeFragment());
 
-        initUmeng();
+        initAPI();
 
     }
 
-    private void initUmeng() {
-        // 友盟用户反馈
-        agent = new FeedbackAgent(mContext);
-        agent.sync();
-        agent.openFeedbackPush();
+    private void initAPI() {
+
         // 消息推送
-        mPushAgent = PushAgent.getInstance(this);
+        mPushAgent = PushAgent.getInstance(mContext);
         mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
         //开启推送
         mPushAgent.enable();
@@ -161,9 +160,14 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
             intent.putExtra(Intent.EXTRA_TEXT, shareContent); // 分享的内容
             startActivity(Intent.createChooser(intent, "选择分享"));// 目标应用选择对话框的标题
         } else if (id == R.id.nav_feedback) {
-            agent.setWelcomeInfo("你好，欢迎您反馈使用产品的建议和感受");
-            agent.closeAudioFeedback();
-            agent.startFeedbackActivity();
+            Map<String, String> map = new ArrayMap<String, String>();
+            map.put("themeColor","#3F51B5");
+            map.put("pageTitle","意见反馈");
+            map.put("hideLoginSuccess","false");
+            FeedbackAPI. setUICustomInfo(map);
+            FeedbackAPI.setCustomContact("E-mail", true);
+            //如果发生错误，请查看logcat日志
+            FeedbackAPI.openFeedbackActivity(mContext);
         } else if (id == R.id.nav_about) {
 
         }

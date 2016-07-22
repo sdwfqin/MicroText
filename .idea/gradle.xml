@@ -9,8 +9,8 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/OneSDK" />
             <option value="$PROJECT_DIR$/PullLoadLibrary" />
-            <option value="$PROJECT_DIR$/PushDemo" />
             <option value="$PROJECT_DIR$/PushSDK" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/magicindicator" />
@@ -19,8 +19,8 @@
         <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/OneSDK" />
             <option value="$PROJECT_DIR$/PullLoadLibrary" />
-            <option value="$PROJECT_DIR$/PushDemo" />
             <option value="$PROJECT_DIR$/PushSDK" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/magicindicator" />
