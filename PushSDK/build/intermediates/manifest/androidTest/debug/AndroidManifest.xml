@@ -3,7 +3,7 @@
     package="com.umeng.message.lib.test" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="16"
         android:targetSdkVersion="24" />
 
     <instrumentation

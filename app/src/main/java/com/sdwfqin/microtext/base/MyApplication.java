@@ -2,7 +2,8 @@ package com.sdwfqin.microtext.base;
 
 import android.app.Application;
 
-import com.alibaba.sdk.android.feedback.impl.FeedbackAPI;
+import com.umeng.message.MsgConstant;
+import com.umeng.message.PushAgent;
 
 /**
  * Created by sdwfqin on 2016/7/22.
@@ -12,7 +13,10 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-        // 用户反馈
-        FeedbackAPI.initAnnoy(this, "23416375");
+        // 消息推送
+        PushAgent mPushAgent = PushAgent.getInstance(this);
+        mPushAgent.setNotificationPlaySound(MsgConstant.NOTIFICATION_PLAY_SDK_ENABLE);
+        //开启推送
+        mPushAgent.enable();
     }
 }
