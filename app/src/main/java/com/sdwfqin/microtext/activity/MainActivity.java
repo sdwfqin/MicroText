@@ -150,7 +150,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_feedback) {
             agent.startFeedbackActivity();
         } else if (id == R.id.nav_about) {
-
+            startActivity(new Intent(mContext,AboutActivity.class));
         }
 
         // 关闭侧栏

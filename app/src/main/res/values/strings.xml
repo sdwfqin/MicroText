@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">"微文"</string>
+    <string name="app_name">"微小文"</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="main_exit">再按一次退出程序</string>

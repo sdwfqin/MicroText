@@ -31,14 +31,20 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activity.MainActivity"
-                  android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MainActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"/>
 
         <!-- 文章详情页 -->
         <activity
             android:name=".activity.EssayContentActvity"
             android:screenOrientation="portrait"/>
 
+        <!-- 友盟反馈页 -->
         <activity
             android:name="com.umeng.fb.ConversationActivity"/>
 
