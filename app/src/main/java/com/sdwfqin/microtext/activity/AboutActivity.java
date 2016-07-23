@@ -51,7 +51,7 @@ public class AboutActivity extends BaseActivity {
         mToolbarReturnText.setVisibility(View.VISIBLE);
         mToolbarTitle.setVisibility(View.VISIBLE);
         mToolbarTitle.setText("关于我们");
-        mAboutVersion.setText("Version：" + getVersionName(this));
+        mAboutVersion.setText("V " + getVersionName(this));
 
     }
 
@@ -62,6 +62,7 @@ public class AboutActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.about_update:
+                startActivity(new Intent(this,AboutVersionActivity.class));
                 break;
             case R.id.about_haoping:
                 marketDownload(this,"com.sdwfqin.microtext");

@@ -19,10 +19,8 @@ import android.widget.Toast;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
-import com.sdwfqin.microtext.fragment.DuiBaiFragment;
 import com.sdwfqin.microtext.fragment.HomeFragment;
-import com.sdwfqin.microtext.fragment.MeiTuFragment;
-import com.sdwfqin.microtext.fragment.ShouXieFragment;
+import com.sdwfqin.microtext.fragment.SecondFragment;
 import com.umeng.fb.FeedbackAgent;
 
 import butterknife.ButterKnife;
@@ -34,7 +32,7 @@ import butterknife.InjectView;
  * @author sdwfqin
  * @version 1.0.0
  * @since 2016-07-18
- * <p>
+ * <p/>
  * 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
  * 项目地址：https://github.com/sdwfqin/MicroText
  */
@@ -82,9 +80,15 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void switchFragment(Fragment newFragment) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        Bundle args = new Bundle();
-//        args.putString("url", url);
-//        newFragment.setArguments(args);
+        fragmentTransaction.replace(R.id.main_fragment, newFragment).commit();
+    }
+
+    private void switchFragment(Fragment newFragment, String url) {
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        Bundle args = new Bundle();
+        args.putString("url", url);
+        newFragment.setArguments(args);
         fragmentTransaction.replace(R.id.main_fragment, newFragment).commit();
     }
 
@@ -133,12 +137,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
 
         if (id == R.id.nav_home) {
             switchFragment(new HomeFragment());
+            mToolbarTitle.setText(R.string.app_name);
         } else if (id == R.id.nav_meitu) {
-            switchFragment(new MeiTuFragment());
+            switchFragment(new SecondFragment(), "http://www.juzimi.com/meitumeiju?page=");
+            mToolbarTitle.setText(R.string.nav_meitu_text);
         } else if (id == R.id.nav_shouxie) {
-            switchFragment(new ShouXieFragment());
+            switchFragment(new SecondFragment(), "http://www.juzimi.com/meitumeiju/shouxiemeiju?page=");
+            mToolbarTitle.setText(R.string.nav_shouxie_text);
         } else if (id == R.id.nav_duibai) {
-            switchFragment(new DuiBaiFragment());
+            switchFragment(new SecondFragment(), "http://www.juzimi.com/meitumeiju/jingdianduibai?page=");
+            mToolbarTitle.setText(R.string.nav_duibai_text);
         } else if (id == R.id.nav_share) {
             /** 分享 **/
             String shareContent = mContext.getResources().getString(
@@ -150,7 +158,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         } else if (id == R.id.nav_feedback) {
             agent.startFeedbackActivity();
         } else if (id == R.id.nav_about) {
-            startActivity(new Intent(mContext,AboutActivity.class));
+            startActivity(new Intent(mContext, AboutActivity.class));
         }
 
         // 关闭侧栏

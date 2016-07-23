@@ -42,7 +42,7 @@
 
                 <TextView
                     style="@style/wode_tiaomu_wenzi"
-                    android:text="版本更新" />
+                    android:text="软件版本" />
 
                 <TextView
                     android:id="@+id/about_version"

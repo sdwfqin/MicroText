@@ -6,12 +6,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.util.Xml;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +18,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.EssayContentActvity;
-import com.sdwfqin.microtext.entity.HomeItem;
+import com.sdwfqin.microtext.Model.HomeModel;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
 import com.sdwfqin.microtext.view.LazyViewPager;
@@ -63,7 +60,7 @@ public class HomeFragment extends Fragment {
     private final static String TAG = "MicroText";
 
     private List<String> mIndicatorDataList = new ArrayList<String>();
-    private List<HomeItem> mDataList = new ArrayList<HomeItem>();
+    private List<HomeModel> mDataList = new ArrayList<HomeModel>();
     int i = 1;
     private PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
     private RecyclerViewAdapter mRecyclerViewAdapter;
@@ -151,7 +148,6 @@ public class HomeFragment extends Fragment {
         //加载数据
         mDataList.clear();
         i = 1;
-        Log.e(TAG, "initRecyclerDataPosition: " + position);
         initItemData(position);
 
         //调用下拉刷新和加载更多
@@ -183,10 +179,7 @@ public class HomeFragment extends Fragment {
 
     private void initItemData(int position) {
 
-        Log.e(TAG, "initItemData: ");
-
         final String Url = AppConfig.sHomeUrl + AppConfig.sHomeCode[position] + i + ".html";
-        Log.e(TAG, "initItemData: url" + Url);
 
         AsyncHttpClient ahc = new AsyncHttpClient();
         ahc.get(Url, new MyResponseHandler());
@@ -276,7 +269,7 @@ public class HomeFragment extends Fragment {
             TextView home_items_content;
             TextView home_items_info;
 
-            private HomeItem mHomeItem;
+            private HomeModel mHomeModel;
 
             public ViewHolder(View itemView) {
                 super(itemView);
@@ -287,12 +280,12 @@ public class HomeFragment extends Fragment {
                 home_items_info = (TextView) itemView.findViewById(R.id.home_items_info);
             }
 
-            public void bindData(HomeItem homeItem) {
+            public void bindData(HomeModel homeModel) {
 
-                mHomeItem = homeItem;
-                home_items_title.setText(mHomeItem.getTitle());
-                home_items_content.setText(mHomeItem.getContent());
-                home_items_info.setText(mHomeItem.getInfo());
+                mHomeModel = homeModel;
+                home_items_title.setText(mHomeModel.getTitle());
+                home_items_content.setText(mHomeModel.getContent());
+                home_items_info.setText(mHomeModel.getInfo());
 
             }
 
@@ -300,8 +293,8 @@ public class HomeFragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EssayContentActvity.class);
                 Bundle bundle = new Bundle();
-                bundle.putString("url",mHomeItem.getUrl());
-                bundle.putString("title",mHomeItem.getTitle());
+                bundle.putString("url", mHomeModel.getUrl());
+                bundle.putString("title", mHomeModel.getTitle());
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
@@ -320,13 +313,13 @@ public class HomeFragment extends Fragment {
                 Document mDocument = Jsoup.parse(doc);
                 Elements es = mDocument.getElementsByClass("cbody");
                 for (Element e : es) {
-                    HomeItem mHomeItem = new HomeItem();
-                    mHomeItem.setTitle(e.getElementsByClass("title").text().toString());
-                    mHomeItem.setContent(e.getElementsByClass("intro").text().toString());
-                    mHomeItem.setInfo(e.getElementsByClass("info").text().toString());
-                    mHomeItem.setUrl(e.getElementsByClass("title").attr("href").toString());
+                    HomeModel mHomeModel = new HomeModel();
+                    mHomeModel.setTitle(e.getElementsByClass("title").text().toString());
+                    mHomeModel.setContent(e.getElementsByClass("intro").text().toString());
+                    mHomeModel.setInfo(e.getElementsByClass("info").text().toString());
+                    mHomeModel.setUrl(e.getElementsByClass("title").attr("href").toString());
 
-                    mDataList.add(mHomeItem);
+                    mDataList.add(mHomeModel);
                 }
 
                 mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();

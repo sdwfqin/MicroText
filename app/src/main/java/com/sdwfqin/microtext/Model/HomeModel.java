@@ -1,9 +1,9 @@
-package com.sdwfqin.microtext.entity;
+package com.sdwfqin.microtext.Model;
 
 /**
  * Created by sdwfqin on 2016/7/20.
  */
-public class HomeItem {
+public class HomeModel {
 
     private String mTitle;
     private String mContent;
@@ -40,15 +40,5 @@ public class HomeItem {
 
     public void setUrl(String url) {
         mUrl = url;
-    }
-
-    @Override
-    public String toString() {
-        return "HomeItem{" +
-                "mTitle='" + mTitle + '\'' +
-                ", mContent='" + mContent + '\'' +
-                ", mInfo='" + mInfo + '\'' +
-                ", mUrl='" + mUrl + '\'' +
-                '}';
     }
 }
