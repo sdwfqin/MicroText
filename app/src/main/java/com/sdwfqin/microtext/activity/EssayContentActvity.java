@@ -1,13 +1,13 @@
 package com.sdwfqin.microtext.activity;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -46,8 +46,12 @@ public class EssayContentActvity extends BaseActivity {
     WebView mEssayWeb;
     @InjectView(R.id.essay_head)
     TextView mEssayHead;
+    @InjectView(R.id.essay_progress)
+    RelativeLayout mEssayProgress;
+    @InjectView(R.id.essay_content)
+    ScrollView mEssayContent;
     private String url;
-    private AlertDialog ad;
+//    private AlertDialog ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,16 +73,16 @@ public class EssayContentActvity extends BaseActivity {
             mToolbarTitle.setText(title);
         }
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setCancelable(true);
-        View view = View.inflate(this, R.layout.dialog_load, null);
-        builder.setView(view);
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setCancelable(true);
+//        View view = View.inflate(this, R.layout.dialog_load, null);
+//        builder.setView(view);
 
         AsyncHttpClient ahc = new AsyncHttpClient();
         ahc.get(AppConfig.sHomeUrl + url, new MyResponseHandler());
 
-        ad = builder.create();
-        ad.show();
+//        ad = builder.create();
+//        ad.show();
     }
 
     @OnClick({R.id.toolbar_return_text})
@@ -115,7 +119,9 @@ public class EssayContentActvity extends BaseActivity {
                 mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
                 // mEssayWeb.loadData(es.toString(), "text/html; charset=UTF-8", null);
                 mEssayWeb.loadDataWithBaseURL(AppConfig.sHomeUrl, sb.toString(), "text/html", "UTF-8", null);
-                ad.dismiss();
+//                ad.dismiss();
+                mEssayProgress.setVisibility(View.GONE);
+                mEssayContent.setVisibility(View.VISIBLE);
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 ShowToastUtils.showToast(EssayContentActvity.this, "数据异常");

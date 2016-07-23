@@ -7,9 +7,39 @@
 
     <include layout="@layout/main_toolbar"/>
 
+    <RelativeLayout
+        android:id="@+id/essay_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/essay_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="108dp"
+            android:maxHeight="104dp"
+            android:indeterminateDrawable="@anim/wb_loading_frame"
+            android:minWidth="108dp"
+            android:minHeight="104dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="正在加载中……"
+            android:textColor="@android:color/black"
+            android:textSize="14dip"
+            android:layout_below="@+id/essay_bar"
+            android:layout_centerHorizontal="true"/>
+
+    </RelativeLayout>
+
     <ScrollView
+        android:id="@+id/essay_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:visibility="gone"
         >
 
         <LinearLayout
