@@ -10,8 +10,8 @@ android {
         applicationId "com.sdwfqin.microtext"
         minSdkVersion 16
         targetSdkVersion 24
-        versionCode 1
-        versionName "1.0"
+        versionCode 2016072301
+        versionName "1.0.0"
     }
     buildTypes {
         release {

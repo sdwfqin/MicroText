@@ -35,8 +35,15 @@
             android:name=".activity.MainActivity"
             android:screenOrientation="portrait"/>
 
+        <!-- 关于我们 -->
         <activity
             android:name=".activity.AboutActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.AboutMeActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.AboutProjectActivity"
             android:screenOrientation="portrait"/>
 
         <!-- 文章详情页 -->

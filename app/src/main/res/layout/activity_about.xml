@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:card_view="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ffffff"
@@ -9,8 +10,7 @@
     
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center">
 
@@ -19,14 +19,140 @@
             android:layout_height="wrap_content"
             android:src="@drawable/about_wwimg"/>
 
-        <TextView
-            android:id="@+id/about_version"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="#000000"
-            android:textSize="16sp"
-            android:text="版本号：1.0.0"/>
-
     </LinearLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        card_view:cardCornerRadius="5dp"
+        card_view:cardUseCompatPadding="true"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/about_update"
+                style="@style/wode_tiaomu">
+
+                <TextView
+                    style="@style/wode_tiaomu_wenzi"
+                    android:text="版本更新" />
+
+                <TextView
+                    android:id="@+id/about_version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="14dp"/>
+            </RelativeLayout>
+
+            <TextView style="@style/xiangxi_xiaoHX" />
+
+            <RelativeLayout
+                android:id="@+id/about_haoping"
+                style="@style/wode_tiaomu">
+
+                <TextView
+                    style="@style/wode_tiaomu_wenzi"
+                    android:text="好评鼓励" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="14dp"
+                    android:src="@drawable/ic_right_sanjiao" />
+            </RelativeLayout>
+
+            <TextView style="@style/xiangxi_xiaoHX" />
+
+            <RelativeLayout
+                android:id="@+id/about_me"
+                style="@style/wode_tiaomu">
+
+                <TextView
+                    style="@style/wode_tiaomu_wenzi"
+                    android:text="作者简介" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="14dp"
+                    android:src="@drawable/ic_right_sanjiao" />
+            </RelativeLayout>
+
+            <TextView style="@style/xiangxi_xiaoHX" />
+
+            <RelativeLayout
+                android:id="@+id/about_project"
+                style="@style/wode_tiaomu">
+
+                <TextView
+                    style="@style/wode_tiaomu_wenzi"
+                    android:text="项目介绍" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="14dp"
+                    android:src="@drawable/ic_right_sanjiao" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center">
+
+            <TextView style="@style/xiangxi_xiaoHX"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="数据来源于网络"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="如若侵犯了您的权益请与我联系"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="码农Mrz    www.sdwfqin.com"
+                android:layout_marginBottom="3dp"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>
