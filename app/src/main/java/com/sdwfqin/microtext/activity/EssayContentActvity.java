@@ -1,5 +1,6 @@
 package com.sdwfqin.microtext.activity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -46,6 +47,7 @@ public class EssayContentActvity extends BaseActivity {
     @InjectView(R.id.essay_head)
     TextView mEssayHead;
     private String url;
+    private AlertDialog ad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,6 @@ public class EssayContentActvity extends BaseActivity {
         // 先取Bandle对象
         Bundle bundle = intent.getExtras();
         url = bundle.getString("url");
-        Log.e(TAG, "bundle.getString(\"url\")" + url);
         String title = bundle.getString("title");
 
         mToolbarReturnText.setVisibility(View.VISIBLE);
@@ -68,8 +69,16 @@ public class EssayContentActvity extends BaseActivity {
             mToolbarTitle.setText(title);
         }
 
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        View view = View.inflate(this, R.layout.dialog_load, null);
+        builder.setView(view);
+
         AsyncHttpClient ahc = new AsyncHttpClient();
         ahc.get(AppConfig.sHomeUrl + url, new MyResponseHandler());
+
+        ad = builder.create();
+        ad.show();
     }
 
     @OnClick({R.id.toolbar_return_text})
@@ -98,13 +107,15 @@ public class EssayContentActvity extends BaseActivity {
                 Elements es = mDocument.getElementsByClass("content");
 
                 StringBuffer sb = new StringBuffer().append(es.toString());
-                sb.insert(sb.toString().indexOf("src=") + 5, AppConfig.sHomeUrl);
+//                sb.insert(sb.toString().indexOf("src=") + 5, AppConfig.sHomeUrl);
+
+                mEssayHead.setText(info);
 
                 //设置默认为utf-8
                 mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
                 // mEssayWeb.loadData(es.toString(), "text/html; charset=UTF-8", null);
-                mEssayWeb.loadDataWithBaseURL(null, sb.toString(), "text/html", "UTF-8", null);
-                mEssayHead.setText(info);
+                mEssayWeb.loadDataWithBaseURL(AppConfig.sHomeUrl, sb.toString(), "text/html", "UTF-8", null);
+                ad.dismiss();
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
                 ShowToastUtils.showToast(EssayContentActvity.this, "数据异常");
