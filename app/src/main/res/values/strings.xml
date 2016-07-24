@@ -18,5 +18,5 @@
     <!-- Home_items -->
     <string name="items_read_num_text">浏览：</string>
     <string name="items_author_text">作者：</string>
-    <string name="share_content">一款小清新轻应用，包括经典美文、美图美句、手写美句、经典对白。来吧，让我们尽情感受文艺范。</string>
+    <string name="share_content">微小文，一款美丽清新的开源阅读软件，搜集网上的短片散文故事、插图等图文数据与大家共享。</string>
 </resources>

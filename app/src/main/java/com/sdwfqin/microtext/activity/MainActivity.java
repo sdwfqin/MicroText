@@ -73,6 +73,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         // 友盟用户反馈
         agent = new FeedbackAgent(mContext);
         agent.sync();
+        agent.closeAudioFeedback();
 
     }
 
