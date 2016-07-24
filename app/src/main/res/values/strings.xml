@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">"微小文"</string>
     <string name="open">Open</string>
@@ -18,5 +19,5 @@
     <!-- Home_items -->
     <string name="items_read_num_text">浏览：</string>
     <string name="items_author_text">作者：</string>
-    <string name="share_content">微小文，一款美丽清新的开源阅读软件，搜集网上的短片散文故事、插图等图文数据与大家共享。</string>
+    <string name="share_content">微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。</string>
 </resources>
