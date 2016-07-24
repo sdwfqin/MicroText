@@ -2,19 +2,65 @@ package com.sdwfqin.microtext.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo.State;
+import android.net.Uri;
+import android.os.Environment;
 import android.support.v7.graphics.Palette;
 import android.view.inputmethod.InputMethodManager;
 
-/**
- * 常量配置/公用方法
- *
- * @author wxl
- * @since 2014.5.4.14：01
- */
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 public class AppUtils {
+
+    // 保存图片
+    /**
+     * 首先默认个文件保存路径
+     */
+    public static final String SAVE_PIC_PATH = Environment.getExternalStorageState().equalsIgnoreCase(Environment.MEDIA_MOUNTED) ? Environment.getExternalStorageDirectory().getAbsolutePath() :
+            "/mnt/sdcard";//保存到SD卡
+    public static final String SAVE_REAL_PATH = SAVE_PIC_PATH + "/MicrotText";//保存的确切位置
+
+    //下面就是保存的方法，传入参数就可以了
+    public static void saveFile(Bitmap bm, String fileName, Context context) {
+        BufferedOutputStream bos = null;
+        try {
+            String subForder = SAVE_REAL_PATH;
+            File foder = new File(subForder);
+            if (!foder.exists()) {
+                foder.mkdirs();
+            }
+            File myCaptureFile = new File(subForder, fileName);
+            if (!myCaptureFile.exists()) {
+                myCaptureFile.createNewFile();
+            }
+            bos = new BufferedOutputStream(new FileOutputStream(myCaptureFile));
+            bm.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (bos != null) {
+                try {
+                    bos.flush();
+                    bos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        Uri uri = Uri.fromFile(new File(SAVE_REAL_PATH));
+        intent.setData(uri);
+        context.sendBroadcast(intent);
+    }
+
+
     public static int getPaletteColor(Bitmap bitmap) {
         int color = -12417291;
         Palette palette = Palette.from(bitmap).generate();

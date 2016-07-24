@@ -85,15 +85,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Bitmap bitmap = null;
-                            BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
-                            if (bitmapDrawable != null) {
-                                bitmap = bitmapDrawable.getBitmap();
-                            }
+//                            Bitmap bitmap = null;
+//                            BitmapDrawable bitmapDrawable = (BitmapDrawable) imageView.getDrawable();
+//                            if (bitmapDrawable != null) {
+//                                bitmap = bitmapDrawable.getBitmap();
+//                            }
                             Intent intent = new Intent(activity, ShowImageActivity.class);
                             intent.putExtra("mainList", (Serializable) mMainList);
                             intent.putExtra("position", getLayoutPosition());
-                            intent.putExtra(AppConfig.COLOR, AppUtils.getPaletteColor(bitmap));
+                            intent.putExtra(AppConfig.COLOR, 0xff000000);
+//                            intent.putExtra(AppConfig.COLOR, AppUtils.getPaletteColor(bitmap));
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                 ActivityOptionsCompat options = ActivityOptionsCompat
                                         .makeSceneTransitionAnimation(activity, itemView, mMainList.get(getLayoutPosition()).getIamgeUrl());

@@ -10,12 +10,13 @@ import com.umeng.message.PushAgent;
 /**
  * Created by Clock on 2016/2/3.
  */
-public class BaseActivity extends AppCompatActivity{
+public class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+        //统计应用启动数据
         PushAgent.getInstance(getApplicationContext()).onAppStart();
     }
 

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
+import com.sdwfqin.microtext.base.SwipeBackActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -16,7 +17,7 @@ import butterknife.OnClick;
 /**
  * Created by sdwfqin on 2016/7/23.
  */
-public class AboutMeActivity extends BaseActivity {
+public class AboutMeActivity extends SwipeBackActivity {
 
     @InjectView(R.id.toolbar_return_text)
     ImageView mToolbarReturnText;

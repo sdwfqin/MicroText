@@ -14,6 +14,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
+import com.sdwfqin.microtext.base.SwipeBackActivity;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
 
@@ -32,7 +33,7 @@ import butterknife.OnClick;
 /**
  * Created by sdwfqin on 2016/7/20.
  */
-public class EssayContentActvity extends BaseActivity {
+public class EssayContentActvity extends SwipeBackActivity {
 
     @InjectView(R.id.toolbar_title)
     TextView mToolbarTitle;

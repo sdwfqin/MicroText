@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -47,15 +48,6 @@ public class ShowImageActivity extends BaseActivity {
         mViewPager.setPageTransformer(true, new CardTransformer(0.8f));
         mViewPager.setAdapter(new FragmentPagerAdapter());
         mViewPager.setCurrentItem(position);
-//        setEnterSharedElementCallback(new SharedElementCallback() {
-//            @Override
-//            public void onMapSharedElements(List<String> names, Map<String, View> sharedElements) {
-//                SecondModel SecondModel = mMainList.get(mViewPager.getCurrentItem());
-//                ShowImageFragment fragment = (ShowImageFragment) new FragmentPagerAdapter().instantiateItem(mViewPager, mViewPager.getCurrentItem());
-//                sharedElements.clear();
-//                sharedElements.put(SecondModel.getIamgeUrl(), fragment.getSharedElement());
-//            }
-//        });
     }
 
     public void setStatusBarColor(int statusBarColor) {

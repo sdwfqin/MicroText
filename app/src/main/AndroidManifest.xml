@@ -41,20 +41,25 @@
 
         <!-- 关于我们 -->
         <activity
+            android:theme="@style/myTransparent"
             android:name=".activity.AboutActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:theme="@style/myTransparent"
             android:name=".activity.AboutVersionActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:theme="@style/myTransparent"
             android:name=".activity.AboutMeActivity"
             android:screenOrientation="portrait"/>
         <activity
+            android:theme="@style/myTransparent"
             android:name=".activity.AboutProjectActivity"
             android:screenOrientation="portrait"/>
 
         <!-- 文章详情页 -->
         <activity
+            android:theme="@style/myTransparent"
             android:name=".activity.EssayContentActvity"
             android:screenOrientation="portrait"/>
 

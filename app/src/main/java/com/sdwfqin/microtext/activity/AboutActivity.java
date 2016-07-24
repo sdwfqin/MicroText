@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
+import com.sdwfqin.microtext.base.SwipeBackActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;
@@ -23,7 +24,7 @@ import butterknife.OnClick;
 /**
  * Created by sdwfqin on 2016/7/23.
  */
-public class AboutActivity extends BaseActivity {
+public class AboutActivity extends SwipeBackActivity {
     @InjectView(R.id.about_version)
     TextView mAboutVersion;
     @InjectView(R.id.toolbar_return_text)

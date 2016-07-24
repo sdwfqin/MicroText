@@ -1,76 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:orientation="vertical"
-              android:background="#ffffff">
+              >
 
-    <include layout="@layout/main_toolbar"/>
-
-    <RelativeLayout
-        android:id="@+id/essay_progress"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ProgressBar
-            android:id="@+id/essay_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxWidth="108dp"
-            android:maxHeight="104dp"
-            android:indeterminateDrawable="@anim/wb_loading_frame"
-            android:minWidth="108dp"
-            android:minHeight="104dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="正在加载中……"
-            android:textColor="@android:color/black"
-            android:textSize="14dip"
-            android:layout_below="@+id/essay_bar"
-            android:layout_centerHorizontal="true"/>
-
-    </RelativeLayout>
-
-    <ScrollView
-        android:id="@+id/essay_content"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        >
+        android:orientation="vertical"
+        android:background="#ffffff">
 
-        <LinearLayout
+        <include layout="@layout/main_toolbar"/>
+
+        <RelativeLayout
+            android:id="@+id/essay_progress"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#ffffff"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
+
+            <ProgressBar
+                android:id="@+id/essay_bar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="108dp"
+                android:maxHeight="104dp"
+                android:indeterminateDrawable="@anim/wb_loading_frame"
+                android:minWidth="108dp"
+                android:minHeight="104dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"/>
 
             <TextView
-                android:id="@+id/essay_head"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="15dp"
-                android:layout_marginTop="30dp"
-                android:ellipsize="end"
-                android:gravity="center_horizontal"
-                android:maxLines="1"
-                android:textColor="#000000"/>
+                android:text="正在加载中……"
+                android:textColor="@android:color/black"
+                android:textSize="14dip"
+                android:layout_below="@+id/essay_bar"
+                android:layout_centerHorizontal="true"/>
 
+        </RelativeLayout>
 
-            <WebView
-                android:id="@+id/essay_web"
+        <ScrollView
+            android:id="@+id/essay_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone"
+            >
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                >
-            </WebView>
+                android:background="#ffffff"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/essay_head"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginTop="30dp"
+                    android:ellipsize="end"
+                    android:gravity="center_horizontal"
+                    android:maxLines="1"
+                    android:textColor="#000000"/>
 
 
-    </ScrollView>
-</LinearLayout>
+                <WebView
+                    android:id="@+id/essay_web"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+                </WebView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
