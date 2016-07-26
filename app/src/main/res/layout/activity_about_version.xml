@@ -32,7 +32,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="V 1.0.1"
+                        android:text="@string/about_version_code_1.0.1"
                         android:textColor="#000"
                         android:textSize="16sp"/>
 
@@ -50,7 +50,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1. Bug修复\n2. 优化业务逻辑"/>
+                                android:text="@string/about_version_1.0.1"/>
 
                         </LinearLayout>
 
@@ -68,7 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="V 1.0.0"
+                        android:text="@string/about_version_code_1.0.0"
                         android:textColor="#000"
                         android:textSize="16sp"/>
 
@@ -86,7 +86,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1. 第一版发布，欢迎大家提供反馈建议\n2. 微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。"/>
+                                android:text="@string/about_version_1.0.0"/>
 
                         </LinearLayout>
 

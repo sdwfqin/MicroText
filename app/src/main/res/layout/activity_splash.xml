@@ -4,36 +4,4 @@
                 android:layout_height="match_parent"
                 android:background="@drawable/splash_bg">
 
-    <RelativeLayout
-        android:id="@+id/bottomRl"
-        android:layout_width="fill_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="10dp">
-
-        <ImageView
-            android:id="@+id/bottomIcon"
-            android:layout_width="200dp"
-            android:layout_height="70dp"
-            android:layout_centerHorizontal="true"
-            android:background="@drawable/yidonglianmeng"/>
-
-        <TextView
-            android:id="@+id/bottonText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bottomIcon"
-            android:layout_centerHorizontal="true"
-            android:text="上方有开屏广告位"
-            android:textColor="#000"/>
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/adsRl"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_above="@id/bottomRl"></RelativeLayout>
-
-
 </RelativeLayout>

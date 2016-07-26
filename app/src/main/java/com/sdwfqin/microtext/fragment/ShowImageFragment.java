@@ -145,7 +145,7 @@ public class ShowImageFragment extends Fragment {
         Button xiangce = (Button) window.findViewById(R.id.btn_pick_savephoto);
         Button cancel = (Button) window.findViewById(R.id.btn_cancel);
 
-        //相册
+        //保存
         xiangce.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,14 +170,6 @@ public class ShowImageFragment extends Fragment {
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
         tupian();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Picasso.with(mActivity)
-                .load(mSecondModel.getIamgeUrl())
-                .into(mPhotoView);
     }
 
     @Override

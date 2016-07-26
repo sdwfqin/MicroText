@@ -20,4 +20,12 @@
     <string name="items_read_num_text">浏览：</string>
     <string name="items_author_text">作者：</string>
     <string name="share_content">微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。下载地址：http://a.app.qq.com/o/simple.jsp?pkgname=com.sdwfqin.microtext</string>
+
+    <!-- 关于 -->
+    <!-- 历史版本 -->
+    <string name="about_version_code_1.0.0">V 1.0.0</string>
+    <string name="about_version_1.0.0">1. 第一版发布，欢迎大家提供反馈建议\n2. 微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。</string>
+    <string name="about_version_code_1.0.1">V 1.0.1</string>
+    <string name="about_version_1.0.1">1. Bug修复\n2. 修复在某些情况下加载完图片进度条不消失。</string>
+
 </resources>

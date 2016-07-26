@@ -41,7 +41,6 @@ dependencies {
     compile files('libs/android-async-http-1.4.8.jar')
     compile files('libs/umeng-analytics-v6.0.1.jar')
     compile files('libs/com.umeng.fb.5.4.0.jar')
-    compile files('libs/Baidu_MobAds_SDK.jar')
     compile project(':PushSDK')
     compile project(':magicindicator')
     compile project(':PullLoadLibrary')

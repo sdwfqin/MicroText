@@ -8,6 +8,7 @@ import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -146,5 +147,4 @@ public class ShowImageActivity extends BaseActivity {
             return view == object;
         }
     }
-
 }
