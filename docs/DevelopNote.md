@@ -42,3 +42,7 @@ mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
 // mEssayWeb.loadData(es.toString(), "text/html; charset=UTF-8", null);
 mEssayWeb.loadDataWithBaseURL(AppConfig.sHomeUrl, sb.toString(), "text/html", "UTF-8", null);
 ```
+
+# 颜色
+
+1. 半透明黑色 #89000000

@@ -3,18 +3,15 @@ package com.sdwfqin.microtext.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.sdwfqin.microtext.Model.HomeModel;
 import com.sdwfqin.microtext.Model.SecondModel;
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.utils.AppConfig;
-import com.sdwfqin.microtext.utils.RecyclerViewAdapter;
+import com.sdwfqin.microtext.adapter.RecyclerViewAdapter;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
@@ -25,7 +22,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 

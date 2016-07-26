@@ -1,15 +1,12 @@
-package com.sdwfqin.microtext.utils;
+package com.sdwfqin.microtext.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -18,13 +15,11 @@ import android.widget.TextView;
 import com.sdwfqin.microtext.Model.SecondModel;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.ShowImageActivity;
+import com.sdwfqin.microtext.utils.AppConfig;
 import com.squareup.picasso.Picasso;
 
 import java.io.Serializable;
 import java.util.List;
-
-import butterknife.ButterKnife;
-import butterknife.InjectView;
 
 /**
  * Created by Administrator on 2015/11/22 0022.
