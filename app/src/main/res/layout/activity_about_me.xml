@@ -73,7 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="    微信订阅号：sdwfqin"/>
+                android:text="    微信公众号：sdwfqin"/>
 
         </LinearLayout>
 
