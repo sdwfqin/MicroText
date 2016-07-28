@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.sdwfqin.microtext.Model.SecondModel;
+import com.sdwfqin.microtext.model.SecondModel;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.ShowImageActivity;
 import com.sdwfqin.microtext.utils.AppConfig;

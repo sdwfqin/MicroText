@@ -7,15 +7,13 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.sdwfqin.microtext.Model.SecondModel;
+import com.sdwfqin.microtext.model.SecondModel;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
 import com.sdwfqin.microtext.fragment.ShowImageFragment;

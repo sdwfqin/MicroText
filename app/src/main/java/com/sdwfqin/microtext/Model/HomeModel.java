@@ -1,4 +1,4 @@
-package com.sdwfqin.microtext.Model;
+package com.sdwfqin.microtext.model;
 
 /**
  * Created by sdwfqin on 2016/7/20.

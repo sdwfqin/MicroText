@@ -18,7 +18,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.EssayContentActvity;
-import com.sdwfqin.microtext.Model.HomeModel;
+import com.sdwfqin.microtext.model.HomeModel;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
 import com.sdwfqin.microtext.view.LazyViewPager;

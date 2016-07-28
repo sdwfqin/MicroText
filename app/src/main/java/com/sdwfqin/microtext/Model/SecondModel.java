@@ -1,4 +1,4 @@
-package com.sdwfqin.microtext.Model;
+package com.sdwfqin.microtext.model;
 
 import java.io.Serializable;
 

@@ -8,8 +8,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.NotificationCompatBase;
-import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.sdwfqin.microtext.Model.SecondModel;
+import com.sdwfqin.microtext.model.SecondModel;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.ShowImageActivity;
 import com.sdwfqin.microtext.utils.AppUtils;

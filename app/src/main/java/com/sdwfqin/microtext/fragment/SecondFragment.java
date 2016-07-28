@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-import com.sdwfqin.microtext.Model.SecondModel;
+import com.sdwfqin.microtext.model.SecondModel;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.adapter.RecyclerViewAdapter;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
