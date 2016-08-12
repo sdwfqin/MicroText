@@ -45,8 +45,6 @@ public class EssayContentActvity extends SwipeBackActivity {
     private final static String TAG = "MicroText";
     @InjectView(R.id.essay_web)
     WebView mEssayWeb;
-    @InjectView(R.id.essay_head)
-    TextView mEssayHead;
     @InjectView(R.id.essay_progress)
     RelativeLayout mEssayProgress;
     @InjectView(R.id.essay_content)
@@ -106,15 +104,15 @@ public class EssayContentActvity extends SwipeBackActivity {
 
                 Document mDocument = Jsoup.parse(doc);
 
-                String info = mDocument.getElementsByClass("info").text().toString();
-                info = info.substring(0, info.length() - 6);
+//                String info = mDocument.getElementsByClass("info").text().toString();
+//                info = info.substring(0, info.length() - 6);
 
-                Elements es = mDocument.getElementsByClass("content");
+                Elements es = mDocument.getElementsByClass("article-content");
 
                 StringBuffer sb = new StringBuffer().append(es.toString());
 //                sb.insert(sb.toString().indexOf("src=") + 5, AppConfig.sHomeUrl);
 
-                mEssayHead.setText(info);
+//                mEssayHead.setText(info);
 
                 //设置默认为utf-8
                 mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");

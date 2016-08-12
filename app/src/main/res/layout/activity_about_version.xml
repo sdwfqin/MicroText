@@ -32,7 +32,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
-                        android:text="@string/about_version_code_1.0.1"
+                        android:text="@string/about_version_code_1.1.3"
                         android:textColor="#000"
                         android:textSize="16sp"/>
 
@@ -50,7 +50,43 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/about_version_1.0.1"/>
+                                android:text="@string/about_version_1.1.3"/>
+
+                        </LinearLayout>
+
+                    </android.support.v7.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:text="@string/about_version_code_1.1.0"
+                        android:textColor="#000"
+                        android:textSize="16sp"/>
+
+                    <android.support.v7.widget.CardView
+                        style="@style/about_version_viewcard"
+                        card_view:cardCornerRadius="5dp"
+                        card_view:cardUseCompatPadding="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:padding="15dp">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/about_version_1.1.0"/>
 
                         </LinearLayout>
 

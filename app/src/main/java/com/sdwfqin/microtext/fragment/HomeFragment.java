@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -181,6 +182,7 @@ public class HomeFragment extends Fragment {
 
         final String Url = AppConfig.sHomeUrl + AppConfig.sHomeCode[position] + i + ".html";
 
+        Log.e(TAG, "Url===" + Url);
         AsyncHttpClient ahc = new AsyncHttpClient();
         ahc.get(Url, new MyResponseHandler());
     }
@@ -267,7 +269,6 @@ public class HomeFragment extends Fragment {
 
             TextView home_items_title;
             TextView home_items_content;
-            TextView home_items_info;
 
             private HomeModel mHomeModel;
 
@@ -277,7 +278,6 @@ public class HomeFragment extends Fragment {
 
                 home_items_title = (TextView) itemView.findViewById(R.id.home_items_title);
                 home_items_content = (TextView) itemView.findViewById(R.id.home_items_content);
-                home_items_info = (TextView) itemView.findViewById(R.id.home_items_info);
             }
 
             public void bindData(HomeModel homeModel) {
@@ -285,7 +285,6 @@ public class HomeFragment extends Fragment {
                 mHomeModel = homeModel;
                 home_items_title.setText(mHomeModel.getTitle());
                 home_items_content.setText(mHomeModel.getContent());
-                home_items_info.setText(mHomeModel.getInfo());
 
             }
 
@@ -311,15 +310,24 @@ public class HomeFragment extends Fragment {
                 URLEncoder.encode(doc, "UTF-8");
 
                 Document mDocument = Jsoup.parse(doc);
-                Elements es = mDocument.getElementsByClass("cbody");
+                // 空格处理
+//                Elements es = mDocument.getElementsByClass("list media");
+                Elements es = mDocument.select(".list").select(".media");
                 for (Element e : es) {
-                    HomeModel mHomeModel = new HomeModel();
-                    mHomeModel.setTitle(e.getElementsByClass("title").text().toString());
-                    mHomeModel.setContent(e.getElementsByClass("intro").text().toString());
-                    mHomeModel.setInfo(e.getElementsByClass("info").text().toString());
-                    mHomeModel.setUrl(e.getElementsByClass("title").attr("href").toString());
 
-                    mDataList.add(mHomeModel);
+                    Elements ess = e.getElementsByClass("cont");
+
+                    for (Element ee : ess) {
+
+                        HomeModel mHomeModel = new HomeModel();
+                        mHomeModel.setTitle(ee.getElementsByClass("tit").text().toString());
+                        mHomeModel.setContent(ee.getElementsByTag("small").text().toString());
+//                        mHomeModel.setInfo(ee.getElementsByClass("uinfo").text().toString());
+                        mHomeModel.setUrl(ee.getElementsByClass("tit").attr("href").toString());
+
+                        mDataList.add(mHomeModel);
+                    }
+
                 }
 
                 mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
