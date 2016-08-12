@@ -80,7 +80,7 @@
         <!-- 渠道 -->
         <meta-data
             android:name="UMENG_CHANNEL"
-            android:value="ceshi">
+            android:value="tx">
         </meta-data>
 
     </application>
