@@ -123,8 +123,7 @@
             <intent-filter>
                 <action android:name="com.umeng.message.autoupdate.handler.action" />
             </intent-filter>
-        </service>
- <!-- If you donot want to use the standard notification bar in SDK, you can define IntentService instead to handle message. -->
+        </service> <!-- If you donot want to use the standard notification bar in SDK, you can define IntentService instead to handle message. -->
         <service
             android:name="com.umeng.message.UmengDownloadResourceService"
             android:exported="false" />
