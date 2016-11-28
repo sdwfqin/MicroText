@@ -1,1 +1,1 @@
-include ':app', ':magicindicator', ':PushSDK'
+include ':app', ':PushSDK'
