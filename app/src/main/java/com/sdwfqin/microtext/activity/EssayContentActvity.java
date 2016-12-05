@@ -3,6 +3,7 @@ package com.sdwfqin.microtext.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ import com.sdwfqin.microtext.utils.ShowToastUtils;
 import org.apache.http.Header;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.UnsupportedEncodingException;
@@ -107,9 +109,14 @@ public class EssayContentActvity extends SwipeBackActivity {
 //                String info = mDocument.getElementsByClass("info").text().toString();
 //                info = info.substring(0, info.length() - 6);
 
-                Elements es = mDocument.getElementsByClass("article-content");
+                Elements es = mDocument.getElementsByClass("atcMain");
+                String tmp = "";
+                for (Element e : es){
 
-                StringBuffer sb = new StringBuffer().append(es.toString());
+                    tmp =  e.getElementsByTag("article").toString();
+                }
+
+                StringBuffer sb = new StringBuffer().append(tmp);
 //                sb.insert(sb.toString().indexOf("src=") + 5, AppConfig.sHomeUrl);
 
 //                mEssayHead.setText(info);
