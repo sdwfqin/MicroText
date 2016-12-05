@@ -269,6 +269,7 @@ public class HomeFragment extends Fragment {
 
             TextView home_items_title;
             TextView home_items_content;
+//            TextView home_items_info;
 
             private HomeModel mHomeModel;
 
@@ -278,6 +279,7 @@ public class HomeFragment extends Fragment {
 
                 home_items_title = (TextView) itemView.findViewById(R.id.home_items_title);
                 home_items_content = (TextView) itemView.findViewById(R.id.home_items_content);
+//                home_items_info = (TextView) itemView.findViewById(R.id.home_items_info);
             }
 
             public void bindData(HomeModel homeModel) {
@@ -285,6 +287,7 @@ public class HomeFragment extends Fragment {
                 mHomeModel = homeModel;
                 home_items_title.setText(mHomeModel.getTitle());
                 home_items_content.setText(mHomeModel.getContent());
+//                home_items_info.setText(mHomeModel.getInfo());
 
             }
 
@@ -310,23 +313,23 @@ public class HomeFragment extends Fragment {
                 URLEncoder.encode(doc, "UTF-8");
 
                 Document mDocument = Jsoup.parse(doc);
-                // 空格处理
-//                Elements es = mDocument.getElementsByClass("list media");
-                Elements es = mDocument.select(".list").select(".media");
+
+                Elements es = mDocument.getElementsByClass("info");
                 for (Element e : es) {
 
-                    Elements ess = e.getElementsByClass("cont");
+                    HomeModel mHomeModel = new HomeModel();
+                    mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
+                    mHomeModel.setContent(e.getElementsByTag("p").text().toString());
+//                    mHomeModel.setInfo(e.getElementsByClass("uinfo").text().toString().substring(11));
+                    mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
 
-                    for (Element ee : ess) {
+//                    Log.e(TAG,"===========数据测试==========");
+//                    Log.e(TAG,e.getElementsByClass("tit").text().toString());
+//                    Log.e(TAG,e.getElementsByTag("p").text().toString());
+//                    Log.e(TAG,e.getElementsByClass("uinfo").text().toString());
+//                    Log.e(TAG,e.getElementsByClass("tit").attr("href").toString());
 
-                        HomeModel mHomeModel = new HomeModel();
-                        mHomeModel.setTitle(ee.getElementsByClass("tit").text().toString());
-                        mHomeModel.setContent(ee.getElementsByTag("small").text().toString());
-//                        mHomeModel.setInfo(ee.getElementsByClass("uinfo").text().toString());
-                        mHomeModel.setUrl(ee.getElementsByClass("tit").attr("href").toString());
-
-                        mDataList.add(mHomeModel);
-                    }
+                    mDataList.add(mHomeModel);
 
                 }
 

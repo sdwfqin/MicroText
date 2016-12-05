@@ -30,8 +30,8 @@ import butterknife.InjectView;
  * 微文
  *
  * @author sdwfqin
- * @version 1.0.0
- * @since 2016-07-18
+ * @version 1.1.5
+ * @since 2016-12-05
  * <p/>
  * 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
  * 项目地址：https://github.com/sdwfqin/MicroText
