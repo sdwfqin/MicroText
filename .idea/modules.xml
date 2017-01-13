@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/App/app.iml" filepath="$PROJECT_DIR$/App/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/App2.0/App2.0.iml" filepath="$PROJECT_DIR$/App2.0/App2.0.iml" />
       <module fileurl="file://$PROJECT_DIR$/MicroText.iml" filepath="$PROJECT_DIR$/MicroText.iml" />
       <module fileurl="file://$PROJECT_DIR$/PushSDK/PushSDK.iml" filepath="$PROJECT_DIR$/PushSDK/PushSDK.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>
