@@ -1,18 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
         applicationId "com.sdwfqin.microtext"
-        minSdkVersion 16
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
     buildTypes {
         release {
@@ -24,9 +21,27 @@ android {
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    testCompile 'junit:junit:4.12'
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    //compile "com.android.support:palette-v7:$rootProject.ext.supportLibraryVersion"
+    compile "org.jsoup:jsoup:$rootProject.ext.jsoupVersion"
+    compile "com.wuxiaolong.pullloadmorerecyclerview:library:$rootProject.ext.pullLoadMoreRecyclerViewVersion"
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
+    compile "com.github.chrisbanes:PhotoView:$rootProject.ext.PhotoViewVersion"
+    compile "com.github.hackware1993:MagicIndicator:$rootProject.ext.MagicIndicatorVersion"
+
+    // butterknife
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+
+    // retrofit2
+    compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
+    compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
+
+    // rxjava
+    compile "io.reactivex:rxandroid:$rootProject.ext.rxandroidVersion"
+    compile "io.reactivex:rxjava:$rootProject.ext.rxjavaVersion"
 }

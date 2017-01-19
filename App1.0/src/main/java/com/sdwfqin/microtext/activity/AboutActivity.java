@@ -14,8 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.base.BaseActivity;
-import com.sdwfqin.microtext.base.SwipeBackActivity;
+import com.sdwfqin.microtext.view.SwipeBackActivity;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

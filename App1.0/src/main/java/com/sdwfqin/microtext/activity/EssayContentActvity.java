@@ -3,7 +3,6 @@ package com.sdwfqin.microtext.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -14,8 +13,7 @@ import android.widget.TextView;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.base.BaseActivity;
-import com.sdwfqin.microtext.base.SwipeBackActivity;
+import com.sdwfqin.microtext.view.SwipeBackActivity;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
 
