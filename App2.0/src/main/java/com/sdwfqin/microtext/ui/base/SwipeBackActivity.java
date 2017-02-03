@@ -1,11 +1,10 @@
-package com.sdwfqin.microtext.view;
+package com.sdwfqin.microtext.ui.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.ui.base.BaseActivity;
 
 /**
  * 想要实现向右滑动删除Activity效果只需要继承SwipeBackActivity即可，如果当前页面含有ViewPager

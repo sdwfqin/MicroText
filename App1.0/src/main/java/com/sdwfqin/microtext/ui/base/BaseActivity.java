@@ -1,4 +1,4 @@
-package com.sdwfqin.microtext.base;
+package com.sdwfqin.microtext.ui.base;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;

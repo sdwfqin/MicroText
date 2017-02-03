@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import com.sdwfqin.microtext.model.SecondModel;
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.base.BaseActivity;
+import com.sdwfqin.microtext.ui.base.BaseActivity;
 import com.sdwfqin.microtext.fragment.ShowImageFragment;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;

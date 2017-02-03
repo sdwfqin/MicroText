@@ -8,7 +8,7 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.base.BaseActivity;
+import com.sdwfqin.microtext.ui.base.BaseActivity;
 
 /**
  * Created by sdwfqin on 2016/7/21.

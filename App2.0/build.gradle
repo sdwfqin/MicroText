@@ -30,6 +30,8 @@ dependencies {
     compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     compile "com.github.chrisbanes:PhotoView:$rootProject.ext.PhotoViewVersion"
     compile "com.github.hackware1993:MagicIndicator:$rootProject.ext.MagicIndicatorVersion"
+    compile "com.github.mcxtzhang:SwipeDelMenuLayout:$rootProject.ext.SwipeDelMenuLayoutVersion"
+    compile "com.wang.avi:library:$rootProject.ext.aviVersion"
 
     // butterknife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
@@ -39,6 +41,7 @@ dependencies {
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
+    compile "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava:$rootProject.ext.retrofitVersion"
 
     // rxjava
