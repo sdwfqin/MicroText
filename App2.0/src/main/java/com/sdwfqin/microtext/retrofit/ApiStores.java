@@ -9,6 +9,6 @@ public interface ApiStores {
     String API_SERVER_URL = "http://www.lookmw.cn";
 
     //原创
-    @GET("/yc/list_64477_{pageId}.html")
-    Observable<String> loadYc(@Path("pageId") String pageId);
+    @GET("{homePage}{pageId}.html")
+    Observable<String> loadYc(@Path("homePage") String homePage ,@Path("pageId") String pageId);
 }

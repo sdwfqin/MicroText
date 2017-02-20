@@ -15,7 +15,9 @@ public abstract class ApiCallback<M> extends Subscriber<M> {
 
     @Override
     public void onError(Throwable e) {
+        // 将此 throwable 及其追踪输出至标准错误流。
         e.printStackTrace();
+        // 判断其左边对象是否为其右边类的实例，返回boolean类型的数据
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
             //httpException.response().errorBody().string()
