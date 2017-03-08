@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">"微小文"</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="main_exit">再按一次退出程序</string>
+    <string name="order_load_text">正在加载 。。。</string>
+
+    <!-- 侧边栏 -->
+    <string name="Communicate">互动</string>
+    <string name="nav_home_text">精美散文</string>
+    <string name="nav_meitu_text">美图美句</string>
+    <string name="nav_shouxie_text">手写美句</string>
+    <string name="nav_duibai_text">经典对白</string>
+    <string name="nav_Share_text">推荐好友</string>
+    <string name="nav_feedback_text">意见反馈</string>
+    <string name="nav_about_text">关于我们</string>
+
+    <!-- Home_items -->
+    <string name="items_read_num_text">浏览：</string>
+    <string name="items_author_text">作者：</string>
+    <string name="share_content">微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。下载地址：http://a.app.qq.com/o/simple.jsp?pkgname=com.sdwfqin.microtext</string>
+
+    <!-- 关于 -->
+    <!-- 历史版本 -->
+    <string name="about_version_code_1.0.0">V 1.0.0</string>
+    <string name="about_version_1.0.0">1. 第一版发布，欢迎大家提供反馈建议\n2. 微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。</string>
+    <string name="about_version_code_1.1.0">V 1.1.0</string>
+    <string name="about_version_1.1.0">1. Bug修复\n2. 修复在某些情况下加载完图片进度条不消失。</string>
+    <string name="about_version_code_1.1.3">V 1.1.3</string>
+    <string name="about_version_1.1.3">1. 修复散文页面数据源\n</string>
+    <string name="about_version_code_1.1.5">V 1.1.5</string>
+    <string name="about_version_1.1.5">1. 修复首页数据源</string>
+    <string name="about_version_code_1.2.0">V 1.2.0</string>
+    <string name="about_version_1.2.0">1. 修复首页数据源\n2. 更换网络请求框架</string>
+
+</resources>
