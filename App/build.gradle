@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId "com.sdwfqin.microtext"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 2017030801
+        versionName "1.2.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions{
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:palette-v7:$rootProject.ext.supportLibraryVersion"
+
+    // butterknife
+    compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
+
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
+    compile "com.github.chrisbanes:PhotoView:$rootProject.ext.PhotoViewVersion"
+
+    compile "com.zhy:okhttputils:$rootProject.ext.okhttputils"
+    compile "org.jsoup:jsoup:$rootProject.ext.jsoupVersion"
+    compile "com.wuxiaolong.pullloadmorerecyclerview:library:$rootProject.ext.pullLoadMoreRecyclerViewVersion"
+    compile "com.github.hackware1993:MagicIndicator:$rootProject.ext.MagicIndicatorVersion"
+
+    compile files('libs/umeng-analytics-v6.0.1.jar')
+    compile files('libs/com.umeng.fb.5.4.0.jar')
+    compile project(':PushSDK')
+}
