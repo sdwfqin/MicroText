@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -42,15 +43,15 @@ public class EssayContentActvity extends SwipeBackActivity {
     Toolbar mToolbar;
     @BindView(R.id.toolbar_return_text)
     ImageView mToolbarReturnText;
-
-    private final static String TAG = "MicroText";
     @BindView(R.id.essay_web)
     WebView mEssayWeb;
     @BindView(R.id.essay_progress)
     RelativeLayout mEssayProgress;
     @BindView(R.id.essay_content)
     ScrollView mEssayContent;
+
     private String url;
+    private static final String TAG = "EssayContentActvity";
 //    private AlertDialog ad;
 
     @Override
@@ -73,6 +74,12 @@ public class EssayContentActvity extends SwipeBackActivity {
             mToolbarTitle.setText(title);
         }
 
+        initData();
+
+    }
+
+    // 加载数据
+    private void initData() {
         OkHttpUtils
                 .get()
                 .url(AppConfig.sHomeUrl + url)
@@ -91,23 +98,39 @@ public class EssayContentActvity extends SwipeBackActivity {
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Document mDocument = Jsoup.parse(response);
 
-                        Elements es = mDocument.getElementsByClass("atcMain");
-                        String tmp = "";
-                        for (Element e : es) {
-                            tmp = e.getElementsByTag("article").toString();
-                        }
+                        setData(response);
 
-                        StringBuffer sb = new StringBuffer().append(tmp);
-
-                        //设置默认为utf-8
-                        mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
-                        mEssayWeb.loadDataWithBaseURL(AppConfig.sHomeUrl, sb.toString(), "text/html", "UTF-8", null);
-                        mEssayProgress.setVisibility(View.GONE);
-                        mEssayContent.setVisibility(View.VISIBLE);
                     }
                 });
+    }
+
+    // 设置数据
+    public void setData(String response) {
+        Document mDocument = Jsoup.parse(response);
+
+        Elements es = mDocument.getElementsByClass("atcMain");
+        String tmp = "";
+        for (Element e : es) {
+            tmp = e.getElementsByTag("article").toString();
+        }
+
+        StringBuffer sb = new StringBuffer().append(tmp);
+
+        //设置默认为utf-8
+        mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
+        mEssayWeb.loadDataWithBaseURL(AppConfig.sHomeUrl, sb.toString(), "text/html", "UTF-8", null);
+        // 监听WebView加载进度
+        mEssayWeb.setWebChromeClient(new WebChromeClient(){
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                if(newProgress == 100){
+                    mEssayProgress.setVisibility(View.GONE);
+                    mEssayContent.setVisibility(View.VISIBLE);
+                }
+            }
+        });
     }
 
     @OnClick({R.id.toolbar_return_text})
@@ -118,4 +141,6 @@ public class EssayContentActvity extends SwipeBackActivity {
                 break;
         }
     }
+
+
 }

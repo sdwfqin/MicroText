@@ -1,5 +1,6 @@
 package com.sdwfqin.microtext.fragment;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -8,15 +9,14 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.EssayContentActvity;
+import com.sdwfqin.microtext.adapter.HomeRecyclerAdapter;
 import com.sdwfqin.microtext.model.HomeModel;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
@@ -55,16 +55,18 @@ public class HomeFragment extends Fragment {
     MagicIndicator mHomeMagicIndicator;
     @BindView(R.id.home_view_pager)
     LazyViewPager mHomeViewPager;
-    private View mView;
 
-    private final static String TAG = "MicroText";
+    private View mView;
+    private PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
+    private HomeRecyclerAdapter mRecyclerViewAdapter;
+    private FloatingActionButton mMFloatingActionButton;
+    private Context mContext;
+
+    private static final String TAG = "HomeFragment";
 
     private List<String> mIndicatorDataList = new ArrayList<String>();
     private List<HomeModel> mDataList = new ArrayList<HomeModel>();
     int i = 1;
-    private PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
-    private RecyclerViewAdapter mRecyclerViewAdapter;
-    private FloatingActionButton mMFloatingActionButton;
 
     //加载标签数据
     {
@@ -73,37 +75,6 @@ public class HomeFragment extends Fragment {
         }
     }
 
-    private PagerAdapter mAdapter = new PagerAdapter() {
-
-        @Override
-        public int getCount() {
-            return mIndicatorDataList.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object object) {
-            return view == object;
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-
-            return initRecyclerData(container, position);
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView((View) object);
-        }
-
-        @Override
-        public int getItemPosition(Object object) {
-            return POSITION_NONE;
-        }
-
-    };
-
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -111,16 +82,9 @@ public class HomeFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, mView);
 
+        mContext = getActivity();
         initView();
 
-        mMFloatingActionButton = (FloatingActionButton) mView.findViewById(R.id.fab);
-        mMFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //底部小窗
-                mPullLoadMoreRecyclerView.scrollToTop();
-            }
-        });
         return mView;
     }
 
@@ -136,7 +100,7 @@ public class HomeFragment extends Fragment {
         mPullLoadMoreRecyclerView.setLinearLayout();
 
         //绑定的适配器
-        mRecyclerViewAdapter = new RecyclerViewAdapter();
+        mRecyclerViewAdapter = new HomeRecyclerAdapter(mContext, mDataList);
         mPullLoadMoreRecyclerView.setFooterViewText(R.string.order_load_text);
         //设置刷新颜色
         mPullLoadMoreRecyclerView.setColorSchemeResources(android.R.color.holo_red_light, android.R.color.holo_blue_dark);
@@ -147,7 +111,7 @@ public class HomeFragment extends Fragment {
         //加载数据
         mDataList.clear();
         i = 1;
-        initItemData(position);
+        initData(position);
 
         //调用下拉刷新和加载更多
         mPullLoadMoreRecyclerView.setOnPullLoadMoreListener(new PullLoadMoreRecyclerView.PullLoadMoreListener() {
@@ -155,13 +119,26 @@ public class HomeFragment extends Fragment {
             public void onRefresh() {
                 i = 1;
                 mDataList.clear();
-                initItemData(position);
+                initData(position);
             }
 
             @Override
             public void onLoadMore() {
                 ++i;
-                initItemData(position);
+                initData(position);
+            }
+        });
+
+        // 进入条目页面
+        mRecyclerViewAdapter.setOnClickListener(new HomeRecyclerAdapter.onClickListener() {
+            @Override
+            public void onStart(View view, HomeModel homeModel) {
+                Intent intent = new Intent(mContext, EssayContentActvity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", homeModel.getUrl());
+                bundle.putString("title", homeModel.getTitle());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 
@@ -176,11 +153,12 @@ public class HomeFragment extends Fragment {
         return mPullLoadMoreRecyclerView;
     }
 
-    private void initItemData(int position) {
+    // 加载数据
+    private void initData(int position) {
 
         final String Url = AppConfig.sHomeUrl + AppConfig.sHomeCode[position] + i + ".html";
 
-        Log.e(TAG, "Url===" + Url);
+        Log.i(TAG, "Url:" + Url);
         OkHttpUtils
                 .get()
                 .url(Url)
@@ -188,42 +166,57 @@ public class HomeFragment extends Fragment {
                 .execute(new Callback<String>() {
                     @Override
                     public String parseNetworkResponse(Response response, int id) throws Exception {
-                        String str = new String(response.body().bytes(),"GBK");
+                        String str = new String(response.body().bytes(), "GBK");
                         return str;
                     }
 
                     @Override
                     public void onError(Call call, Exception e, int id) {
                         mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-                        ShowToastUtils.showToast(getActivity(), "请求失败");
+                        ShowToastUtils.showToast((Activity) mContext, "请求失败");
+                        Log.e(TAG, "onError: ", e);
                     }
 
                     @Override
                     public void onResponse(String response, int id) {
-                        Document mDocument = Jsoup.parse(response);
-
-                        Elements es = mDocument.getElementsByClass("info");
-                        for (Element e : es) {
-
-                            HomeModel mHomeModel = new HomeModel();
-                            mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
-                            mHomeModel.setContent(e.getElementsByTag("p").text().toString());
-                            mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
-
-                            mDataList.add(mHomeModel);
-                        }
-                        mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
-                        mRecyclerViewAdapter.notifyDataSetChanged();
+                        upDateItem(response);
                     }
                 });
     }
 
+    private void upDateItem(String response) {
+        Document mDocument = Jsoup.parse(response);
+
+        Elements es = mDocument.getElementsByClass("info");
+        for (Element e : es) {
+
+            HomeModel mHomeModel = new HomeModel();
+            mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
+            mHomeModel.setContent(e.getElementsByTag("p").text().toString());
+            mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
+
+            mDataList.add(mHomeModel);
+        }
+        mPullLoadMoreRecyclerView.setPullLoadMoreCompleted();
+        mRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
     private void initView() {
+
+        // 浮动按钮
+        mMFloatingActionButton = (FloatingActionButton) mView.findViewById(R.id.fab);
+        mMFloatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //底部小窗
+                mPullLoadMoreRecyclerView.scrollToTop();
+            }
+        });
 
         mHomeViewPager.setAdapter(mAdapter);
 
         // 天天快报式
-        final CommonNavigator commonNavigator = new CommonNavigator(getActivity());
+        final CommonNavigator commonNavigator = new CommonNavigator(mContext);
         commonNavigator.setEnablePivotScroll(true);
         commonNavigator.setAdapter(new CommonNavigatorAdapter() {
             @Override
@@ -273,64 +266,33 @@ public class HomeFragment extends Fragment {
         });
     }
 
-
-    /**
-     * item适配器
-     */
-    class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+    private PagerAdapter mAdapter = new PagerAdapter() {
 
         @Override
-        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_items, parent, false);
-            return new ViewHolder(view);
-        }
-
-
-        @Override
-        public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.bindData(mDataList.get(position));
+        public int getCount() {
+            return mIndicatorDataList.size();
         }
 
         @Override
-        public int getItemCount() {
-            return mDataList.size();
+        public boolean isViewFromObject(View view, Object object) {
+            return view == object;
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        @Override
+        public Object instantiateItem(ViewGroup container, int position) {
 
-            TextView home_items_title;
-            TextView home_items_content;
-//            TextView home_items_info;
-
-            private HomeModel mHomeModel;
-
-            public ViewHolder(View itemView) {
-                super(itemView);
-                itemView.setOnClickListener(this);
-
-                home_items_title = (TextView) itemView.findViewById(R.id.home_items_title);
-                home_items_content = (TextView) itemView.findViewById(R.id.home_items_content);
-//                home_items_info = (TextView) itemView.findViewById(R.id.home_items_info);
-            }
-
-            public void bindData(HomeModel homeModel) {
-
-                mHomeModel = homeModel;
-                home_items_title.setText(mHomeModel.getTitle());
-                home_items_content.setText(mHomeModel.getContent());
-//                home_items_info.setText(mHomeModel.getInfo());
-
-            }
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), EssayContentActvity.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("url", mHomeModel.getUrl());
-                bundle.putString("title", mHomeModel.getTitle());
-                intent.putExtras(bundle);
-                startActivity(intent);
-            }
+            return initRecyclerData(container, position);
         }
-    }
+
+        @Override
+        public void destroyItem(ViewGroup container, int position, Object object) {
+            container.removeView((View) object);
+        }
+
+        @Override
+        public int getItemPosition(Object object) {
+            return POSITION_NONE;
+        }
+
+    };
 }
