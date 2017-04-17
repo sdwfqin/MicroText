@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.sdwfqin.microtext.R;
+import com.sdwfqin.microtext.listener.HomeRecyclerListener;
 import com.sdwfqin.microtext.model.HomeModel;
 
 import java.util.List;
@@ -20,25 +21,15 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
 
     private List<HomeModel> mList;
     private Context mContext;
-    private onClickListener mOnClickListener;
+    private HomeRecyclerListener mHomeRecyclerListener;
 
     public HomeRecyclerAdapter(Context context, List<HomeModel> list) {
-        mContext = context;
-        mList = list;
-    }
-    /**
-     * 和Activity通信的接口
-     */
-    public interface onClickListener {
-        void onStart(View view,HomeModel homeModel);
+        this.mContext = context;
+        this.mList = list;
     }
 
-    public onClickListener getOnClickListener() {
-        return mOnClickListener;
-    }
-
-    public void setOnClickListener(onClickListener mOnClickListener) {
-        this.mOnClickListener = mOnClickListener;
+    public void setHomeRecyclerListener(HomeRecyclerListener mHomeRecyclerListener) {
+        this.mHomeRecyclerListener = mHomeRecyclerListener;
     }
 
 
@@ -88,8 +79,8 @@ public class HomeRecyclerAdapter extends RecyclerView.Adapter<HomeRecyclerAdapte
         @Override
         public void onClick(View view) {
 
-            if (null != mOnClickListener) {
-                mOnClickListener.onStart(view,mHomeModel);
+            if (null != mHomeRecyclerListener) {
+                mHomeRecyclerListener.onStart(view, mHomeModel);
             }
         }
 

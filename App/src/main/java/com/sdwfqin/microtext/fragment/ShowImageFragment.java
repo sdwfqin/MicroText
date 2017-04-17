@@ -1,6 +1,6 @@
 package com.sdwfqin.microtext.fragment;
 
-
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -19,9 +20,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.ShowImageActivity;
+import com.sdwfqin.microtext.listener.PermissionListener;
 import com.sdwfqin.microtext.model.SecondModel;
 import com.sdwfqin.microtext.utils.AppUtils;
 import com.squareup.picasso.Callback;
@@ -31,10 +34,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import uk.co.senab.photoview.PhotoView;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class ShowImageFragment extends Fragment {
+public class ShowImageFragment extends BaseFragment {
 
     private SecondModel mSecondModel;
     private int position;
@@ -43,6 +43,7 @@ public class ShowImageFragment extends Fragment {
     PhotoView mPhotoView;
     private View mView;
     private String mImageUrl;
+    private static final String TAG = "ShowImageFragment";
 
     public static Fragment newFragment(SecondModel SecondModel, int position) {
         Bundle bundle = new Bundle();
@@ -73,7 +74,6 @@ public class ShowImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         mView = inflater.inflate(R.layout.fragment_show_image, container, false);
 
@@ -113,10 +113,7 @@ public class ShowImageFragment extends Fragment {
         });
     }
 
-    /**********
-     * 保存图片
-     **********/
-    // 小弹窗
+    // 保存图片
     public void tupian() {
 
         View view = getActivity().getLayoutInflater().inflate(R.layout.activity_dibu_tanchuang, null);
@@ -148,10 +145,26 @@ public class ShowImageFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                BitmapDrawable bitmapDrawable = (BitmapDrawable) mPhotoView.getDrawable();
-                AppUtils.saveFile(bitmapDrawable.getBitmap(),mImageUrl.substring(mImageUrl.lastIndexOf("/")),getActivity());
-                dialog.dismiss();
-                Snackbar.make(mView, "图片已保存至" + AppUtils.SAVE_REAL_PATH, Snackbar.LENGTH_SHORT).show();
+                requestRuntimePermission(getActivity(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionListener() {
+                    @Override
+                    public void onGranted() {
+                        try {
+                            BitmapDrawable bitmapDrawable = (BitmapDrawable) mPhotoView.getDrawable();
+                            AppUtils.saveFile(bitmapDrawable.getBitmap(), mImageUrl.substring(mImageUrl.lastIndexOf("/")), getActivity());
+                            dialog.dismiss();
+                            Snackbar.make(mView, "图片已保存至" + AppUtils.SAVE_REAL_PATH, Snackbar.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            Log.e(TAG, "onGranted: ", e);
+                            dialog.dismiss();
+                        }
+                    }
+
+                    @Override
+                    public void onDenied() {
+                        dialog.dismiss();
+                        Toast.makeText(mActivity, "无权操作，请授权写入权限", Toast.LENGTH_SHORT).show();
+                    }
+                });
             }
         });
         //取消

@@ -44,6 +44,14 @@ public class SecondFragment extends Fragment {
     private List<SecondModel> mDataList = new ArrayList<SecondModel>();
     RecyclerViewAdapter mRecyclerViewAdapter;
 
+    public static SecondFragment newInstance(String param1) {
+        SecondFragment fragment = new SecondFragment();
+        Bundle args = new Bundle();
+        args.putString("url", param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {

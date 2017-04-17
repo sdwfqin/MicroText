@@ -27,10 +27,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * 微文
+ * 微小文
  *
  * @author sdwfqin
- * @version 1.2.0
+ * @version 1.3.0
  * @since 2016-12-05
  * <p/>
  * 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         // 设置MenuItem默认选中项
         navigationView.getMenu().getItem(0).setChecked(true);
 
-        switchFragment(new HomeFragment());
+        switchFragment(HomeFragment.newInstance());
 
         // 友盟用户反馈
         agent = new FeedbackAgent(mContext);
@@ -82,15 +82,6 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
     private void switchFragment(Fragment newFragment) {
 
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.main_fragment, newFragment).commit();
-    }
-
-    private void switchFragment(Fragment newFragment, String url) {
-
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        Bundle args = new Bundle();
-        args.putString("url", url);
-        newFragment.setArguments(args);
         fragmentTransaction.replace(R.id.main_fragment, newFragment).commit();
     }
 
@@ -138,16 +129,16 @@ public class MainActivity extends BaseActivity implements NavigationView.OnNavig
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            switchFragment(new HomeFragment());
+            switchFragment(HomeFragment.newInstance());
             mToolbarTitle.setText(R.string.app_name);
         } else if (id == R.id.nav_meitu) {
-            switchFragment(new SecondFragment(), "http://www.juzimi.com/meitumeiju?page=");
+            switchFragment(SecondFragment.newInstance("http://www.juzimi.com/meitumeiju?page="));
             mToolbarTitle.setText(R.string.nav_meitu_text);
         } else if (id == R.id.nav_shouxie) {
-            switchFragment(new SecondFragment(), "http://www.juzimi.com/meitumeiju/shouxiemeiju?page=");
+            switchFragment(SecondFragment.newInstance("http://www.juzimi.com/meitumeiju/shouxiemeiju?page="));
             mToolbarTitle.setText(R.string.nav_shouxie_text);
         } else if (id == R.id.nav_duibai) {
-            switchFragment(new SecondFragment(), "http://www.juzimi.com/meitumeiju/jingdianduibai?page=");
+            switchFragment(SecondFragment.newInstance("http://www.juzimi.com/meitumeiju/jingdianduibai?page="));
             mToolbarTitle.setText(R.string.nav_duibai_text);
         } else if (id == R.id.nav_share) {
             /** 分享 **/

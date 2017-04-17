@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.activity.EssayContentActvity;
 import com.sdwfqin.microtext.adapter.HomeRecyclerAdapter;
+import com.sdwfqin.microtext.listener.HomeRecyclerListener;
 import com.sdwfqin.microtext.model.HomeModel;
 import com.sdwfqin.microtext.utils.AppConfig;
 import com.sdwfqin.microtext.utils.ShowToastUtils;
@@ -75,6 +76,11 @@ public class HomeFragment extends Fragment {
         }
     }
 
+    public static HomeFragment newInstance() {
+        HomeFragment fragment = new HomeFragment();
+        return fragment;
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -130,7 +136,7 @@ public class HomeFragment extends Fragment {
         });
 
         // 进入条目页面
-        mRecyclerViewAdapter.setOnClickListener(new HomeRecyclerAdapter.onClickListener() {
+        mRecyclerViewAdapter.setHomeRecyclerListener(new HomeRecyclerListener() {
             @Override
             public void onStart(View view, HomeModel homeModel) {
                 Intent intent = new Intent(mContext, EssayContentActvity.class);
