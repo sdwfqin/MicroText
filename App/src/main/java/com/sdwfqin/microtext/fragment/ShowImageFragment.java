@@ -32,15 +32,17 @@ import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import uk.co.senab.photoview.PhotoView;
 
 public class ShowImageFragment extends BaseFragment {
 
+    Unbinder unbinder;
+    @BindView(R.id.imageView)
+    PhotoView mPhotoView;
     private SecondModel mSecondModel;
     private int position;
     private ShowImageActivity mActivity;
-    @BindView(R.id.imageView)
-    PhotoView mPhotoView;
     private View mView;
     private String mImageUrl;
     private static final String TAG = "ShowImageFragment";
@@ -77,7 +79,7 @@ public class ShowImageFragment extends BaseFragment {
 
         mView = inflater.inflate(R.layout.fragment_show_image, container, false);
 
-        ButterKnife.bind(this, mView);
+        unbinder = ButterKnife.bind(this, mView);
         return mView;
     }
 
@@ -186,5 +188,6 @@ public class ShowImageFragment extends BaseFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 }

@@ -44,6 +44,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -52,6 +53,7 @@ import okhttp3.Response;
  */
 public class HomeFragment extends Fragment {
 
+    Unbinder unbinder;
     @BindView(R.id.home_magic_indicator)
     MagicIndicator mHomeMagicIndicator;
     @BindView(R.id.home_view_pager)
@@ -86,7 +88,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mView = inflater.inflate(R.layout.fragment_home, container, false);
-        ButterKnife.bind(this, mView);
+        unbinder = ButterKnife.bind(this, mView);
 
         mContext = getActivity();
         initView();
@@ -97,6 +99,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     private PullLoadMoreRecyclerView initRecyclerData(ViewGroup container, final int position) {

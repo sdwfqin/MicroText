@@ -3,7 +3,6 @@ package com.sdwfqin.microtext.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +14,18 @@ import com.sdwfqin.microtext.utils.ShowToastUtils;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
-import com.zhy.http.okhttp.callback.StringCallback;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -35,6 +33,7 @@ import okhttp3.Response;
  * Created by sdwfqin on 2016/7/19.
  */
 public class SecondFragment extends Fragment {
+    Unbinder unbinder;
     @BindView(R.id.pullLoadMoreRecyclerView)
     PullLoadMoreRecyclerView mPullLoadMoreRecyclerView;
     private int mPage = 1;
@@ -69,7 +68,7 @@ public class SecondFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         mView = inflater.inflate(R.layout.second_fragment, container, false);
-        ButterKnife.bind(this, mView);
+        unbinder = ButterKnife.bind(this, mView);
 
         initData();
         return mView;
@@ -78,6 +77,7 @@ public class SecondFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     private void initData() {
