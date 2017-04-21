@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewCompat;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,8 @@ public class ShowImageFragment extends BaseFragment {
     Unbinder unbinder;
     @BindView(R.id.imageView)
     PhotoView mPhotoView;
+    @BindView(R.id.scroll_text)
+    ScrollView scrollText;
     private SecondModel mSecondModel;
     private int position;
     private ShowImageActivity mActivity;
@@ -89,7 +93,13 @@ public class ShowImageFragment extends BaseFragment {
         mImageUrl = mSecondModel.getIamgeUrl();
         final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
         final TextView introduction = (TextView) view.findViewById(R.id.introduction);
-        introduction.setText(mSecondModel.getTitle());
+
+        if (!TextUtils.isEmpty(mSecondModel.getTitle())) {
+            scrollText.setVisibility(View.VISIBLE);
+            introduction.setText(mSecondModel.getTitle());
+        } else {
+            scrollText.setVisibility(View.GONE);
+        }
         ViewCompat.setTransitionName(mPhotoView, mImageUrl);
         Picasso.with(getActivity()).load(mImageUrl)
                 .into(mPhotoView, new Callback() {

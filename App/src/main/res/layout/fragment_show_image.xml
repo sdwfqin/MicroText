@@ -11,6 +11,7 @@
         android:layout_centerInParent="true" />
 
     <ScrollView
+        android:id="@+id/scroll_text"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="#89000000"
