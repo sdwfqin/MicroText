@@ -84,7 +84,7 @@ public class EssayContentActvity extends SwipeBackActivity {
                 .execute(new Callback<String>() {
                     @Override
                     public String parseNetworkResponse(Response response, int id) throws Exception {
-                        String str = new String(response.body().bytes(), "GBK");
+                        String str = new String(response.body().bytes(), "UTF-8");
                         return str;
                     }
 
