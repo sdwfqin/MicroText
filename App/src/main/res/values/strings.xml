@@ -36,6 +36,6 @@
     <string name="about_version_code_1.3.0">V 1.3.0</string>
     <string name="about_version_1.3.0">1. 修缮Android6.0+存储图片</string>
     <string name="about_version_code_1.3.1">V 1.3.1</string>
-    <string name="about_version_1.3.1">1. 修复数据编码\n2. 修复图片没有说明文字是仍然显示文字框</string>
+    <string name="about_version_1.3.1">1. 修复数据编码\n2. 修复图片没有说明文字时仍然显示文字框</string>
 
 </resources>
