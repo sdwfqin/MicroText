@@ -165,7 +165,7 @@ public class HomeFragment extends Fragment {
     // 加载数据
     private void initData(int position) {
 
-        final String Url = AppConfig.sHomeUrl + AppConfig.sHomeCode[position] + i + ".html";
+        final String Url = AppConfig.sHomeUrl + AppConfig.sHomeCode[position] + i;
 
         Log.i(TAG, "Url:" + Url);
         OkHttpUtils
