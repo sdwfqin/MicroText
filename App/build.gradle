@@ -26,7 +26,7 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-//    compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
+    compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:appcompat-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
@@ -48,5 +48,4 @@ dependencies {
     compile files('libs/umeng-analytics-v6.0.1.jar')
     compile files('libs/com.umeng.fb.5.4.0.jar')
     compile project(':PushSDK')
-    compile 'com.android.support:support-v4:25.3.1'
 }
