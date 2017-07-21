@@ -1,6 +1,5 @@
 package com.sdwfqin.microtext.ui.essay;
 
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -10,7 +9,7 @@ import com.sdwfqin.microtext.base.BaseFragment;
 import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.contract.EssayMainContract;
 import com.sdwfqin.microtext.presenter.EssayMainPresenter;
-import com.sdwfqin.microtext.ui.essay.adapter.HomeAdapter;
+import com.sdwfqin.microtext.ui.essay.adapter.EssayMainAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +22,11 @@ public class EssayMainFragment extends BaseFragment<EssayMainPresenter> implemen
     TabLayout mTabLayout;
     @BindView(R.id.essaymain_viewpager)
     ViewPager mViewPager;
-    @BindView(R.id.essaymain_fab)
-    FloatingActionButton essaymain_fab;
 
     String[] tabTitle = new String[]{"名家作品", "经典文章", "爱情文章", "失恋",
             "心情随笔", "人生哲理", "长篇故事"};
     List<Fragment> fragments = new ArrayList<Fragment>();
-    private HomeAdapter mHomeAdapter;
+    private EssayMainAdapter mHomeAdapter;
 
     public static EssayMainFragment newInstance() {
         EssayMainFragment fragment = new EssayMainFragment();
@@ -56,7 +53,7 @@ public class EssayMainFragment extends BaseFragment<EssayMainPresenter> implemen
         fragments.add(EssayFragment.newInstance(Constants.CODE_ZHELI));
         fragments.add(EssayFragment.newInstance(Constants.CODE_STORY));
 
-        mHomeAdapter = new HomeAdapter(getChildFragmentManager(),fragments);
+        mHomeAdapter = new EssayMainAdapter(getChildFragmentManager(),fragments);
         mViewPager.setAdapter(mHomeAdapter);
 
         //TabLayout配合ViewPager有时会出现不显示Tab文字的Bug,需要按如下顺序

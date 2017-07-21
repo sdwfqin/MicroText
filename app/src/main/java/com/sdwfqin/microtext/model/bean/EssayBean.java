@@ -3,7 +3,7 @@ package com.sdwfqin.microtext.model.bean;
 /**
  * Created by sdwfqin on 2016/7/20.
  */
-public class HomeBean {
+public class EssayBean {
 
     private String mTitle;
     private String mContent;
