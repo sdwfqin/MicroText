@@ -1,5 +1,7 @@
 # MicroText
 
+1.x版本已停止维护
+
 微小文
 数据使用Jsoup抓取
 
