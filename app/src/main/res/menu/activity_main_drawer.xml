@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/nav_home_text"/>
+        <item
+            android:id="@+id/nav_meitu"
+            android:icon="@drawable/ic_menu_meitu"
+            android:title="@string/nav_meitu_text"/>
+        <item
+            android:id="@+id/nav_shouxie"
+            android:icon="@drawable/ic_menu_shouxie"
+            android:title="@string/nav_shouxie_text"/>
+        <item
+            android:id="@+id/nav_duibai"
+            android:icon="@drawable/ic_menu_duibai"
+            android:title="@string/nav_duibai_text"/>
+    </group>
+
+    <item android:title="@string/Communicate">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="@string/nav_Share_text"/>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_menu_about"
+                android:title="@string/nav_about_text"/>
+        </menu>
+    </item>
+
+</menu>
