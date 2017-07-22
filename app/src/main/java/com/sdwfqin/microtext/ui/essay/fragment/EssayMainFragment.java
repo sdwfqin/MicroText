@@ -1,4 +1,4 @@
-package com.sdwfqin.microtext.ui.essay;
+package com.sdwfqin.microtext.ui.essay.fragment;
 
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -69,6 +69,7 @@ public class EssayMainFragment extends BaseFragment<EssayMainPresenter> implemen
 
         mHomeAdapter = new EssayMainAdapter(getChildFragmentManager(),fragments);
         mViewPager.setAdapter(mHomeAdapter);
+        //mViewPager.setOffscreenPageLimit(3);
 
         //TabLayout配合ViewPager有时会出现不显示Tab文字的Bug,需要按如下顺序
         mTabLayout.addTab(mTabLayout.newTab().setText(tabTitle[0]));

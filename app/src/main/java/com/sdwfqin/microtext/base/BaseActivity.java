@@ -38,14 +38,19 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         setContentView(getLayout());
         ButterKnife.bind(this);
         mContext = this;
-        onViewCreated();
+        onViewCreated(savedInstanceState);
         initEventAndData();
     }
 
-    protected void onViewCreated() {
+    protected void onViewCreated(Bundle savedInstanceState) {
         initInject();
         if (mPresenter != null)
             mPresenter.attachView(this);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
     }
 
     @Override

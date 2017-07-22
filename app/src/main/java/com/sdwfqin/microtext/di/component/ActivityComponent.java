@@ -2,6 +2,7 @@ package com.sdwfqin.microtext.di.component;
 
 import android.app.Activity;
 
+import com.sdwfqin.microtext.ui.essay.activity.EssayContentActvity;
 import com.sdwfqin.microtext.ui.main.MainActivity;
 import com.sdwfqin.microtext.di.module.ActivityModule;
 import com.sdwfqin.microtext.di.scope.ActivityScope;
@@ -17,4 +18,5 @@ public interface ActivityComponent {
 
     void inject(SplashActivity splashActivity);
     void inject(MainActivity mainActivity);
+    void inject(EssayContentActvity essayContentActvity);
 }

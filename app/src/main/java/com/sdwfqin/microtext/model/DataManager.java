@@ -16,4 +16,14 @@ public class DataManager implements HttpHelper {
     public Flowable<String> fetchEssay(String page) {
         return mHttpHelper.fetchEssay(page);
     }
+
+    @Override
+    public Flowable<String> fetchEssayContent(String page) {
+        return mHttpHelper.fetchEssayContent(page);
+    }
+
+    @Override
+    public Flowable<String> fetchMeiTu(String page, int pageId) {
+        return mHttpHelper.fetchMeiTu(page, pageId);
+    }
 }

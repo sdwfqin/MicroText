@@ -6,4 +6,8 @@ public interface HttpHelper {
 
     Flowable<String> fetchEssay(String page);
 
+    Flowable<String> fetchEssayContent(String page);
+
+    Flowable<String> fetchMeiTu(String page, int pageId);
+
 }

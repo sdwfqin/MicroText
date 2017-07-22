@@ -3,7 +3,9 @@ package com.sdwfqin.microtext.di.module;
 import com.sdwfqin.microtext.BuildConfig;
 import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.di.qualifier.EssayUrl;
+import com.sdwfqin.microtext.di.qualifier.JuZiMiUrl;
 import com.sdwfqin.microtext.model.http.api.EssayApi;
+import com.sdwfqin.microtext.model.http.api.JuZiMiApi;
 import com.sdwfqin.microtext.util.SystemUtil;
 
 import java.io.File;
@@ -47,6 +49,25 @@ public class HttpModule {
     @EssayUrl
     Retrofit provideEssayRetrofit(Retrofit.Builder builder, OkHttpClient client) {
         return createRetrofit(builder, client, EssayApi.HOST);
+    }
+
+    @Singleton
+    @Provides
+    @JuZiMiUrl
+    Retrofit provideJuZiMiRetrofit(Retrofit.Builder builder, OkHttpClient client) {
+        return createRetrofit(builder, client, JuZiMiApi.HOST);
+    }
+
+    @Singleton
+    @Provides
+    EssayApi provideEssayService(@EssayUrl Retrofit retrofit) {
+        return retrofit.create(EssayApi.class);
+    }
+
+    @Singleton
+    @Provides
+    JuZiMiApi provideJuZiMiService(@JuZiMiUrl Retrofit retrofit) {
+        return retrofit.create(JuZiMiApi.class);
     }
 
     @Singleton
@@ -116,12 +137,6 @@ public class HttpModule {
         // 错误重连
         builder.retryOnConnectionFailure(true);
         return builder.build();
-    }
-
-    @Singleton
-    @Provides
-    EssayApi provideZhihuService(@EssayUrl Retrofit retrofit) {
-        return retrofit.create(EssayApi.class);
     }
 
     private Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {

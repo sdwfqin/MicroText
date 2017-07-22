@@ -14,4 +14,7 @@ public interface EssayApi {
 
     @GET("{page}")
     Flowable<String> getEssay(@Path("page") String page);
+
+    @GET("{page}")
+    Flowable<String> getEssayContent(@Path("page") String page);
 }

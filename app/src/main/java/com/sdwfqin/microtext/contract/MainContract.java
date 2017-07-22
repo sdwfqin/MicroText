@@ -17,6 +17,7 @@ public interface MainContract {
 
         /**
          * 跳转Fragment
+         *
          * @param newFragment
          */
         void switchFragment(Fragment newFragment);

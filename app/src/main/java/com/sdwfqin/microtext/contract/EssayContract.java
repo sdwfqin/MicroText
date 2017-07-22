@@ -13,15 +13,21 @@ public interface EssayContract {
 
     interface View extends BaseView {
         void showProgress();
+
         void hideProgress();
+
         void setData(List<EssayBean> data);
+
         void refreshData(List<EssayBean> data);
+
         void LoadData(List<EssayBean> data);
     }
 
     interface Presenter extends BasePresenter<View> {
         void initData(String page, int pageId);
+
         void refreshData(String page, int pageId);
+
         void loadData(String page, int pageId);
     }
 

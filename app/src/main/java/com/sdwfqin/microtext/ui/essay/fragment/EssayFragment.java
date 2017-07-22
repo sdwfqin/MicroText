@@ -1,8 +1,6 @@
-package com.sdwfqin.microtext.ui.essay;
+package com.sdwfqin.microtext.ui.essay.fragment;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -10,7 +8,6 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.sdwfqin.microtext.R;
@@ -19,6 +16,7 @@ import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.contract.EssayContract;
 import com.sdwfqin.microtext.model.bean.EssayBean;
 import com.sdwfqin.microtext.presenter.EssayPresenter;
+import com.sdwfqin.microtext.ui.essay.activity.EssayContentActvity;
 import com.sdwfqin.microtext.ui.essay.adapter.EssayAdapter;
 
 import java.util.List;
@@ -52,7 +50,7 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             code = getArguments().getInt("code");
-            url = Constants.sHomeCode[code];
+            url = Constants.ESSAY_URL[code];
         }
     }
 
@@ -85,7 +83,12 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
             @Override
             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                 EssayBean essayBean = (EssayBean) adapter.getData().get(position);
-                Toast.makeText(mActivity, essayBean.getTitle(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(mContext, EssayContentActvity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("url", essayBean.getUrl());
+                bundle.putString("title", essayBean.getTitle());
+                intent.putExtras(bundle);
+                startActivity(intent);
             }
         });
 

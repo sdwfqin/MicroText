@@ -1,6 +1,9 @@
 package com.sdwfqin.microtext.util;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.text.TextUtils;
@@ -93,4 +96,21 @@ public class SystemUtil {
         }
         return null;
     }
+
+    /**
+     * 获取版本号
+     * @param activity
+     * @return
+     */
+    public static String getVersionName(Activity activity) {
+        PackageManager manager = activity.getPackageManager();
+        String packageName = activity.getPackageName();
+        try {
+            PackageInfo info = manager.getPackageInfo(packageName, 0);
+            return info.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            return "2.0.0";
+        }
+    }
+
 }

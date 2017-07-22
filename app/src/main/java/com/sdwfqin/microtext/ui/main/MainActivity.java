@@ -11,21 +11,20 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.text.SpannableString;
-import android.text.Spanned;
-import android.text.style.URLSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseActivity;
+import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.contract.MainContract;
 import com.sdwfqin.microtext.presenter.MainPresenter;
-import com.sdwfqin.microtext.ui.essay.EssayMainFragment;
+import com.sdwfqin.microtext.ui.about.AboutActivity;
+import com.sdwfqin.microtext.ui.essay.fragment.EssayMainFragment;
+import com.sdwfqin.microtext.ui.juzimi.JuZiMiFragment;
 
 import butterknife.BindView;
 
@@ -136,8 +135,11 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         if (id == R.id.nav_home) {
             switchFragment(EssayMainFragment.newInstance());
         } else if (id == R.id.nav_meitu) {
+            switchFragment(JuZiMiFragment.newInstance(Constants.CODE_MEITU));
         } else if (id == R.id.nav_shouxie) {
+            switchFragment(JuZiMiFragment.newInstance(Constants.CODE_SHOUXIE));
         } else if (id == R.id.nav_duibai) {
+            switchFragment(JuZiMiFragment.newInstance(Constants.CODE_DUIBAI));
         } else if (id == R.id.nav_share) {
             /** 分享 **/
             String shareContent = mContext.getResources().getString(
@@ -147,7 +149,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
             intent.putExtra(Intent.EXTRA_TEXT, shareContent); // 分享的内容
             startActivity(Intent.createChooser(intent, "选择分享"));// 目标应用选择对话框的标题
         } else if (id == R.id.nav_about) {
-            // startActivity(new Intent(mContext, AboutActivity.class));
+            startActivity(new Intent(mContext, AboutActivity.class));
         }
 
         // 关闭侧栏

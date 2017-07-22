@@ -1,6 +1,7 @@
 package com.sdwfqin.microtext.model.http;
 
 import com.sdwfqin.microtext.model.http.api.EssayApi;
+import com.sdwfqin.microtext.model.http.api.JuZiMiApi;
 
 import javax.inject.Inject;
 
@@ -9,27 +10,27 @@ import io.reactivex.Flowable;
 public class RetrofitHelper implements HttpHelper {
 
     private EssayApi mEssayService;
+    private JuZiMiApi mJuZiMiService;
 
-    /**
-     * 注入
-     * <p>
-     * 详见：HttpModule -> provideZhihuService
-     *
-     * @param essayApi TestApi接口的实现类的实例对象
-     */
     @Inject
-    public RetrofitHelper(EssayApi essayApi) {
+    public RetrofitHelper(EssayApi essayApi, JuZiMiApi juZiMiApi) {
         this.mEssayService = essayApi;
+        this.mJuZiMiService = juZiMiApi;
     }
 
-    /**
-     * 调用接口中的业务方法
-     *
-     * @param page
-     * @return
-     */
     @Override
     public Flowable<String> fetchEssay(String page) {
         return mEssayService.getEssay(page);
+    }
+
+    @Override
+
+    public Flowable<String> fetchEssayContent(String page) {
+        return mEssayService.getEssayContent(page);
+    }
+
+    @Override
+    public Flowable<String> fetchMeiTu(String page, int pageId) {
+        return mJuZiMiService.getMeiTu(page, pageId);
     }
 }
