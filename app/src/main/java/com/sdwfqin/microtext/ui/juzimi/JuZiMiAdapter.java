@@ -11,6 +11,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.model.bean.JuZiMiBean;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -32,12 +33,16 @@ public class JuZiMiAdapter extends BaseQuickAdapter<JuZiMiBean, BaseViewHolder> 
         } else {
             helper.setVisible(R.id.items_juzimi_title, false);
         }
-        Glide.with(mContext)
+        Picasso.with(mContext)
                 .load(item.getIamgeUrl())
-                .centerCrop()
                 .placeholder(R.drawable.downloading)
-                .error(R.drawable.downloading) // 异常占位图
-                .crossFade() // 淡入加载效果
+                .error(R.drawable.downloading)
                 .into((ImageView) helper.getView(R.id.items_juzimi_imgView));
+//        Glide.with(mContext)
+//                .load(item.getIamgeUrl())
+//                // .placeholder(R.drawable.downloading)
+//                .error(R.drawable.downloading) // 异常占位图
+//                .crossFade() // 淡入加载效果
+//                .into((ImageView) helper.getView(R.id.items_juzimi_imgView));
     }
 }

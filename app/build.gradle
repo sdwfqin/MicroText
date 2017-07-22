@@ -34,8 +34,8 @@ dependencies {
     compile "com.android.support:support-v4:$rootProject.ext.supportLibraryVersion"
 
     compile "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.ext.brvahVersion"
+    compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     compile 'com.makeramen:roundedimageview:2.3.0'
-    compile 'com.github.bumptech.glide:glide:3.8.0'
 
     // butterknife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
