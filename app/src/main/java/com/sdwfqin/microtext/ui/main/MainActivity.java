@@ -2,6 +2,7 @@ package com.sdwfqin.microtext.ui.main;
 
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,9 +11,13 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.URLSpan;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,10 +41,6 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
-    @BindView(R.id.toolbar_title)
-    TextView mToolbarTitle;
-    @BindView(R.id.toolbar)
-    Toolbar mToolbar;
     @BindView(R.id.drawer)
     DrawerLayout mDrawer;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -57,20 +58,33 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEventAndData() {
-        mToolbarTitle.setVisibility(View.VISIBLE);
-        mToolbarTitle.setText(R.string.app_name);
-
-        // 监听Drawer拉出、隐藏
-        mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar, R.string.open, R.string.close);
-        mDrawer.addDrawerListener(mActionBarDrawerToggle);
-        mActionBarDrawerToggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        View view = navigationView.inflateHeaderView(R.layout.drawer_header);
+
+        LinearLayout Blog = (LinearLayout) view.findViewById(R.id.dh_ll);
+        Blog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.sdwfqin.com"));
+                startActivity(intent);
+            }
+        });
+
         navigationView.setNavigationItemSelectedListener(this);
         // 设置MenuItem默认选中项
         navigationView.getMenu().getItem(0).setChecked(true);
 
         switchFragment(EssayMainFragment.newInstance());
+    }
+
+    @Override
+    public void initDrawer(Toolbar toolbar) {
+        if (toolbar != null) {
+            // 监听Drawer拉出、隐藏
+            mActionBarDrawerToggle = new ActionBarDrawerToggle(this, mDrawer, toolbar, R.string.open, R.string.close);
+            mDrawer.addDrawerListener(mActionBarDrawerToggle);
+            mActionBarDrawerToggle.syncState();
+        }
     }
 
     @Override
@@ -120,14 +134,10 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            mToolbarTitle.setText(R.string.app_name);
             switchFragment(EssayMainFragment.newInstance());
         } else if (id == R.id.nav_meitu) {
-            mToolbarTitle.setText(R.string.nav_meitu_text);
         } else if (id == R.id.nav_shouxie) {
-            mToolbarTitle.setText(R.string.nav_shouxie_text);
         } else if (id == R.id.nav_duibai) {
-            mToolbarTitle.setText(R.string.nav_duibai_text);
         } else if (id == R.id.nav_share) {
             /** 分享 **/
             String shareContent = mContext.getResources().getString(

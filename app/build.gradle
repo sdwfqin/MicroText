@@ -33,6 +33,7 @@ dependencies {
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
 
     compile "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.ext.brvahVersion"
+    compile 'com.makeramen:roundedimageview:2.3.0'
 
     // butterknife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"

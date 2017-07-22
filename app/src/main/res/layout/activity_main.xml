@@ -7,19 +7,6 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="0dp"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
-
-        <!--取消阴影-->
-        <!--app:elevation="0dp"-->
-
-        <include layout="@layout/main_toolbar" />
-
-    </android.support.design.widget.AppBarLayout>
-
     <android.support.v4.widget.DrawerLayout
         android:id="@+id/drawer"
         android:layout_width="match_parent"
@@ -27,23 +14,11 @@
         android:fitsSystemWindows="true"
         tools:openDrawer="start">
 
-        <android.support.design.widget.CoordinatorLayout
+        <FrameLayout
+            android:id="@+id/main_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-                <FrameLayout
-                    android:id="@+id/main_fragment"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </RelativeLayout>
-
-        </android.support.design.widget.CoordinatorLayout>
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <!-- 侧栏 -->
         <android.support.design.widget.NavigationView
@@ -52,7 +27,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
-            app:menu="@menu/activity_main_drawer" />
+            app:menu="@menu/activity_main_drawer"/>
 
     </android.support.v4.widget.DrawerLayout>
 </LinearLayout>

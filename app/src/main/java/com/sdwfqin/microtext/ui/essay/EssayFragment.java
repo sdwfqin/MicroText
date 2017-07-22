@@ -1,5 +1,8 @@
 package com.sdwfqin.microtext.ui.essay;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -71,6 +74,7 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
 
         linearLayoutManager = new LinearLayoutManager(mContext);
         essayRecycler.setLayoutManager(linearLayoutManager);
+
         DividerItemDecoration decoration = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
         essayRecycler.addItemDecoration(decoration);
 

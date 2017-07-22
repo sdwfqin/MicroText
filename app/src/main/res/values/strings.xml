@@ -4,6 +4,8 @@
     <string name="close">Close</string>
     <string name="main_exit">再按一次退出程序</string>
     <string name="order_load_text">正在加载 。。。</string>
+    <string name="author">码农Mrz</string>
+    <string name="blog">个人博客：<u>http://sdwfqin.com/</u></string>
 
     <!-- 侧边栏 -->
     <string name="Communicate">互动</string>

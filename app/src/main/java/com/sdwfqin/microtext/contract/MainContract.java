@@ -1,6 +1,7 @@
 package com.sdwfqin.microtext.contract;
 
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.Toolbar;
 
 import com.sdwfqin.microtext.base.BasePresenter;
 import com.sdwfqin.microtext.base.BaseView;
@@ -11,6 +12,8 @@ import com.sdwfqin.microtext.base.BaseView;
 public interface MainContract {
 
     interface View extends BaseView {
+
+        void initDrawer(Toolbar toolbar);
 
         /**
          * 跳转Fragment

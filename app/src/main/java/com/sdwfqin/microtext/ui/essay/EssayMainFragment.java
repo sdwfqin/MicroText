@@ -3,6 +3,9 @@ package com.sdwfqin.microtext.ui.essay;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.TextView;
 
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseFragment;
@@ -10,6 +13,7 @@ import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.contract.EssayMainContract;
 import com.sdwfqin.microtext.presenter.EssayMainPresenter;
 import com.sdwfqin.microtext.ui.essay.adapter.EssayMainAdapter;
+import com.sdwfqin.microtext.ui.main.MainActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +22,10 @@ import butterknife.BindView;
 
 public class EssayMainFragment extends BaseFragment<EssayMainPresenter> implements EssayMainContract.View {
 
+    @BindView(R.id.toolbar_title)
+    TextView mToolbarTitle;
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
     @BindView(R.id.essaymain_tab)
     TabLayout mTabLayout;
     @BindView(R.id.essaymain_viewpager)
@@ -45,6 +53,12 @@ public class EssayMainFragment extends BaseFragment<EssayMainPresenter> implemen
 
     @Override
     protected void initEventAndData() {
+
+        ((MainActivity) getActivity()).initDrawer(mToolbar);
+
+        mToolbarTitle.setVisibility(View.VISIBLE);
+        mToolbarTitle.setText(R.string.app_name);
+
         fragments.add(EssayFragment.newInstance(Constants.CODE_MINGJIA));
         fragments.add(EssayFragment.newInstance(Constants.CODE_JDMW));
         fragments.add(EssayFragment.newInstance(Constants.CODE_LOVE));
