@@ -2,11 +2,8 @@ package com.sdwfqin.microtext.ui.juzimi;
 
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
-import android.support.transition.Visibility;
-import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.sdwfqin.microtext.R;
