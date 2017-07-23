@@ -6,6 +6,15 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <!-- menu字体颜色 -->
+        <item name="android:actionMenuTextColor">@android:color/white</item>
+        <item name="actionMenuTextAppearance">@style/MenuTextStyle</item>
+    </style>
+
+    <!-- menu字体大小 -->
+    <style name="MenuTextStyle">
+        <item name="android:textSize">18sp</item>
     </style>
 
     <!-- 我的界面条目 -->

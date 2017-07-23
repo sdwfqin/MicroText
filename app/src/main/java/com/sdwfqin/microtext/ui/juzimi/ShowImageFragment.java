@@ -2,19 +2,20 @@ package com.sdwfqin.microtext.ui.juzimi;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.chrisbanes.photoview.PhotoView;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseFragment;
+import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.contract.ShowImageContract;
 import com.sdwfqin.microtext.model.bean.JuZiMiBean;
 import com.sdwfqin.microtext.presenter.ShowImagePresenter;
@@ -22,8 +23,6 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implements ShowImageContract.View {
 
@@ -51,16 +50,6 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mJuZiMiBean = (JuZiMiBean) this.getArguments().getSerializable("mainList");
-        position = this.getArguments().getInt("position", 0);
-
-        //指出fragment愿意添加item到选项菜单
-        setHasOptionsMenu(true);
-    }
-
-    @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
     }
@@ -72,7 +61,14 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
 
     @Override
     protected void initEventAndData() {
-        mImageUrl = mJuZiMiBean.getIamgeUrl();
+
+        initMenuClick();
+
+        if (getArguments() != null) {
+            mJuZiMiBean = (JuZiMiBean) getArguments().getSerializable("mainList");
+            position = getArguments().getInt("position", 0);
+            mImageUrl = mJuZiMiBean.getIamgeUrl();
+        }
 
         if (!TextUtils.isEmpty(mJuZiMiBean.getTitle())) {
             showimageScrollText.setVisibility(View.VISIBLE);
@@ -80,8 +76,6 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
         } else {
             showimageScrollText.setVisibility(View.GONE);
         }
-
-        // ViewCompat.setTransitionName(showimageImg, mImageUrl);
 
         Picasso.with(getActivity()).load(mImageUrl)
                 .into(showimageImg, new Callback() {
@@ -101,14 +95,38 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
         showimageImg.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                //tupian();
+                saveImage();
                 return false;
             }
         });
     }
 
+    /**
+     * 使用Activity中toolbar的menu
+     */
+    private void initMenuClick() {
+        ShowImageActivity activity = (ShowImageActivity) getActivity();
+        Toolbar toolbar = activity.toolbar;
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menu_save:
+                        saveImage();
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+
+    @Override
+    public void saveImage() {
+
+    }
+
     @Override
     public void onPrepareOptionsMenu(Menu menu) {
-        //tupian();
+        saveImage();
     }
 }

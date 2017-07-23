@@ -55,6 +55,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mView = inflater.inflate(getLayout(), null);
+        //指出fragment愿意添加item到选项菜单
+        setHasOptionsMenu(true);
         return mView;
     }
 

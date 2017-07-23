@@ -46,15 +46,6 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            code = getArguments().getInt("code");
-            url = Constants.ESSAY_URL[code];
-        }
-    }
-
-    @Override
     protected void initInject() {
         getFragmentComponent().inject(this);
     }
@@ -66,6 +57,11 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
 
     @Override
     protected void initEventAndData() {
+
+        if (getArguments() != null) {
+            code = getArguments().getInt("code");
+            url = Constants.ESSAY_URL[code];
+        }
 
         essaySrl.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
                 android.R.color.holo_orange_light, android.R.color.holo_green_light);
