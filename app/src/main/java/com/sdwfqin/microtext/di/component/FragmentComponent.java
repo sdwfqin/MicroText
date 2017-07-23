@@ -7,6 +7,7 @@ import com.sdwfqin.microtext.di.scope.FragmentScope;
 import com.sdwfqin.microtext.ui.essay.fragment.EssayMainFragment;
 import com.sdwfqin.microtext.ui.essay.fragment.EssayFragment;
 import com.sdwfqin.microtext.ui.juzimi.JuZiMiFragment;
+import com.sdwfqin.microtext.ui.juzimi.ShowImageFragment;
 
 import dagger.Component;
 
@@ -21,4 +22,6 @@ public interface FragmentComponent {
     void inject(EssayFragment essayFragment);
 
     void inject(JuZiMiFragment juZiMiFragment);
+
+    void inject(ShowImageFragment showImageFragment);
 }

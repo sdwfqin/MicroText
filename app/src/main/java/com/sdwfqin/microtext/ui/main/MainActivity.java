@@ -1,5 +1,6 @@
 package com.sdwfqin.microtext.ui.main;
 
+import android.Manifest;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
@@ -27,6 +28,8 @@ import com.sdwfqin.microtext.ui.essay.fragment.EssayMainFragment;
 import com.sdwfqin.microtext.ui.juzimi.JuZiMiFragment;
 
 import butterknife.BindView;
+import permissions.dispatcher.NeedsPermission;
+import permissions.dispatcher.RuntimePermissions;
 
 /**
  * 微小文
@@ -38,6 +41,7 @@ import butterknife.BindView;
  * 博客: www.sdwfqin.com  邮箱: zhangqin@sdwfqin.com
  * 项目地址：https://github.com/sdwfqin/MicroText
  */
+@RuntimePermissions
 public class MainActivity extends BaseActivity<MainPresenter> implements MainContract.View, NavigationView.OnNavigationItemSelectedListener {
 
     @BindView(R.id.drawer)
@@ -57,6 +61,7 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
 
     @Override
     protected void initEventAndData() {
+
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         View view = navigationView.inflateHeaderView(R.layout.drawer_header);
 
@@ -72,6 +77,9 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
         navigationView.setNavigationItemSelectedListener(this);
         // 设置MenuItem默认选中项
         navigationView.getMenu().getItem(0).setChecked(true);
+
+        // 获取权限
+        MainActivityPermissionsDispatcher.getPermissionWithCheck(MainActivity.this);
 
         switchFragment(EssayMainFragment.newInstance());
     }
@@ -90,6 +98,12 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     public void switchFragment(Fragment newFragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.main_fragment, newFragment).commit();
+    }
+
+    // 在需要获取权限的地方注释
+    @NeedsPermission({Manifest.permission.READ_EXTERNAL_STORAGE,Manifest.permission.WRITE_EXTERNAL_STORAGE})
+    @Override
+    public void getPermission() {
     }
 
     // 返回键

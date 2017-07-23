@@ -1,5 +1,6 @@
 package com.sdwfqin.microtext.ui.juzimi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,6 +21,7 @@ import com.sdwfqin.microtext.model.bean.JuZiMiBean;
 import com.sdwfqin.microtext.presenter.JuZiMiPresenter;
 import com.sdwfqin.microtext.ui.main.MainActivity;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -85,17 +87,27 @@ public class JuZiMiFragment extends BaseFragment<JuZiMiPresenter> implements JuZ
         juzimiSrl.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
                 android.R.color.holo_orange_light, android.R.color.holo_green_light);
 
-        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL);
+        staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         juzimiRecycler.setLayoutManager(staggeredGridLayoutManager);
 
         juZiMiAdapter = new JuZiMiAdapter(R.layout.items_juzimi, null);
         juzimiRecycler.setAdapter(juZiMiAdapter);
 
+        juZiMiAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                Intent intent = new Intent(mContext, ShowImageActivity.class);
+                intent.putExtra("mainList", (Serializable) adapter.getData());
+                intent.putExtra("position", position);
+                mContext.startActivity(intent);
+            }
+        });
+
         // 上拉加载
         juZiMiAdapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
             @Override
             public void onLoadMoreRequested() {
-
+                mPresenter.loadData(url, pageId++, hasTitle);
             }
         }, juzimiRecycler);
 
@@ -110,21 +122,34 @@ public class JuZiMiFragment extends BaseFragment<JuZiMiPresenter> implements JuZ
 
     @Override
     public void onRefresh() {
-
+        mPresenter.refreshData(url, 1, hasTitle);
+        pageId = 2;
     }
 
     @Override
     public void showProgress() {
-
+        juzimiSrl.setRefreshing(true);
     }
 
     @Override
     public void hideProgress() {
-
+        juzimiSrl.setRefreshing(false);
     }
 
     @Override
     public void setData(List<JuZiMiBean> data) {
         juZiMiAdapter.addData(data);
+    }
+
+    @Override
+    public void refreshData(List<JuZiMiBean> data) {
+        juZiMiAdapter.setNewData(data);
+    }
+
+    @Override
+    public void LoadData(List<JuZiMiBean> data) {
+        juZiMiAdapter.addData(data);
+        // 本次加载完成
+        juZiMiAdapter.loadMoreComplete();
     }
 }

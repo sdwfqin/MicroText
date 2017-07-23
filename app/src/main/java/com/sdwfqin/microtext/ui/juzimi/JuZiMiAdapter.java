@@ -30,6 +30,7 @@ public class JuZiMiAdapter extends BaseQuickAdapter<JuZiMiBean, BaseViewHolder> 
         } else {
             helper.setVisible(R.id.items_juzimi_title, false);
         }
+        helper.addOnClickListener(R.id.items_juzimi_cardview);
         Picasso.with(mContext)
                 .load(item.getIamgeUrl())
                 .placeholder(R.drawable.downloading)

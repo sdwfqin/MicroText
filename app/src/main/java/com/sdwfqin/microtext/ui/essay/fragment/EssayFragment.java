@@ -97,7 +97,6 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
             @Override
             public void onLoadMoreRequested() {
                 mPresenter.loadData(url, pageId++);
-                essayAdapter.loadMoreComplete();
             }
         }, essayRecycler);
         // 下拉刷新监听器
@@ -133,10 +132,13 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
     @Override
     public void LoadData(List<EssayBean> data) {
         essayAdapter.addData(data);
+        // 本次加载完成
+        essayAdapter.loadMoreComplete();
     }
 
     @Override
     public void onRefresh() {
         mPresenter.refreshData(url, 1);
+        pageId = 2;
     }
 }

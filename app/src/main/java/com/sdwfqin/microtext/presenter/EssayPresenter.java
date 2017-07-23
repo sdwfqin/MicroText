@@ -40,22 +40,7 @@ public class EssayPresenter extends RxPresenter<EssayContract.View> implements E
                 .map(new Function<String, List<EssayBean>>() {
                     @Override
                     public List<EssayBean> apply(@NonNull String s) throws Exception {
-
-                        List<EssayBean> beanList = new ArrayList<EssayBean>();
-
-                        Document mDocument = Jsoup.parse(s);
-
-                        Elements es = mDocument.getElementsByClass("info");
-                        for (Element e : es) {
-
-                            EssayBean mHomeModel = new EssayBean();
-                            mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
-                            mHomeModel.setContent(e.getElementsByTag("p").text().toString());
-                            mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
-
-                            beanList.add(mHomeModel);
-                        }
-                        return beanList;
+                        return dataProcessing(s);
                     }
                 }).subscribe(new Consumer<List<EssayBean>>() {
                     @Override
@@ -78,22 +63,7 @@ public class EssayPresenter extends RxPresenter<EssayContract.View> implements E
                 .map(new Function<String, List<EssayBean>>() {
                     @Override
                     public List<EssayBean> apply(@NonNull String s) throws Exception {
-
-                        List<EssayBean> beanList = new ArrayList<EssayBean>();
-
-                        Document mDocument = Jsoup.parse(s);
-
-                        Elements es = mDocument.getElementsByClass("info");
-                        for (Element e : es) {
-
-                            EssayBean mHomeModel = new EssayBean();
-                            mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
-                            mHomeModel.setContent(e.getElementsByTag("p").text().toString());
-                            mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
-
-                            beanList.add(mHomeModel);
-                        }
-                        return beanList;
+                        return dataProcessing(s);
                     }
                 }).subscribe(new Consumer<List<EssayBean>>() {
                     @Override
@@ -116,22 +86,7 @@ public class EssayPresenter extends RxPresenter<EssayContract.View> implements E
                 .map(new Function<String, List<EssayBean>>() {
                     @Override
                     public List<EssayBean> apply(@NonNull String s) throws Exception {
-
-                        List<EssayBean> beanList = new ArrayList<EssayBean>();
-
-                        Document mDocument = Jsoup.parse(s);
-
-                        Elements es = mDocument.getElementsByClass("info");
-                        for (Element e : es) {
-
-                            EssayBean mHomeModel = new EssayBean();
-                            mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
-                            mHomeModel.setContent(e.getElementsByTag("p").text().toString());
-                            mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
-
-                            beanList.add(mHomeModel);
-                        }
-                        return beanList;
+                        return dataProcessing(s);
                     }
                 }).subscribe(new Consumer<List<EssayBean>>() {
                     @Override
@@ -144,5 +99,28 @@ public class EssayPresenter extends RxPresenter<EssayContract.View> implements E
                         mView.showErrorMsg("网络错误！");
                     }
                 }));
+    }
+
+    /**
+     * 对请求到的数据进行处理
+     * @param s
+     * @return
+     */
+    private List<EssayBean> dataProcessing(String s) {
+        List<EssayBean> beanList = new ArrayList<EssayBean>();
+
+        Document mDocument = Jsoup.parse(s);
+
+        Elements es = mDocument.getElementsByClass("info");
+        for (Element e : es) {
+
+            EssayBean mHomeModel = new EssayBean();
+            mHomeModel.setTitle(e.getElementsByClass("tit").text().toString());
+            mHomeModel.setContent(e.getElementsByTag("p").text().toString());
+            mHomeModel.setUrl(e.getElementsByClass("tit").attr("href").toString());
+
+            beanList.add(mHomeModel);
+        }
+        return beanList;
     }
 }
