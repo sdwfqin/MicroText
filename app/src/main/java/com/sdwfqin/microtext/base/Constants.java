@@ -1,5 +1,7 @@
 package com.sdwfqin.microtext.base;
 
+import com.blankj.utilcode.util.SDCardUtils;
+
 import java.io.File;
 
 public class Constants {
@@ -14,6 +16,11 @@ public class Constants {
      * 路径：/data/data/com.sdwfqin.microtext/cache/data/NetCache
      */
     public static final String PATH_CACHE = PATH_DATA + "/NetCache";
+
+    /**
+     * 图片保存的确切位置
+     */
+    public static final String SAVE_REAL_PATH = SDCardUtils.getSDCardPath() + "MicrotText";
 
     //================= splash ====================
     public static final long DELAY = 3000;

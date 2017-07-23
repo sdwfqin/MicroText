@@ -40,6 +40,8 @@ ext {
     daggerVersion = '2.10'
     brvahVersion = '2.9.25'
     permissionsdispatcher = '2.4.0'
+    roundedimageview = '2.3.0'
+    utilcode = '1.7.1'
 
     // squareup
     retrofitVersion = '2.3.0'

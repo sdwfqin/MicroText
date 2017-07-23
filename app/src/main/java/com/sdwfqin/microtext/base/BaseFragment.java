@@ -31,6 +31,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     protected View mView;
     protected Activity mActivity;
     protected Context mContext;
+    protected LayoutInflater mInflater;
     private Unbinder mUnBinder;
 
     protected FragmentComponent getFragmentComponent(){
@@ -65,6 +66,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         initInject();
         mUnBinder = ButterKnife.bind(this, view);
         mPresenter.attachView(this);
+        mInflater = getLayoutInflater(savedInstanceState);
         initEventAndData();
     }
 

@@ -1,7 +1,13 @@
 package com.sdwfqin.microtext.ui.juzimi;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -12,6 +18,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.FileIOUtils;
+import com.blankj.utilcode.util.FileUtils;
+import com.blankj.utilcode.util.ImageUtils;
+import com.blankj.utilcode.util.SDCardUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.github.chrisbanes.photoview.PhotoView;
 import com.sdwfqin.microtext.R;
 import com.sdwfqin.microtext.base.BaseFragment;
@@ -21,6 +32,9 @@ import com.sdwfqin.microtext.model.bean.JuZiMiBean;
 import com.sdwfqin.microtext.presenter.ShowImagePresenter;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
+
+import java.io.File;
+import java.util.zip.Inflater;
 
 import butterknife.BindView;
 
@@ -120,13 +134,29 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
         });
     }
 
-    @Override
+    /**
+     * 保存图片
+     */
     public void saveImage() {
-
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        saveImage();
+        if (SDCardUtils.isSDCardEnable()) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) showimageImg.getDrawable();
+            String file = Constants.SAVE_REAL_PATH + mImageUrl.substring(mImageUrl.lastIndexOf("/"));
+            if (FileUtils.createOrExistsFile(file)) {
+                byte[] bitmap2Bytes = ImageUtils.bitmap2Bytes(bitmapDrawable.getBitmap(), Bitmap.CompressFormat.JPEG);
+                if (FileIOUtils.writeFileFromBytesByStream(file, bitmap2Bytes)) {
+                    Snackbar.make(mView, "图片已保存至：" + Constants.SAVE_REAL_PATH, Snackbar.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                    Uri uri = Uri.fromFile(new File(Constants.SAVE_REAL_PATH));
+                    intent.setData(uri);
+                    mContext.sendBroadcast(intent);
+                } else {
+                    ToastUtils.showShort("保存失败");
+                }
+            } else {
+                ToastUtils.showShort("保存失败");
+            }
+        } else {
+            ToastUtils.showShort("内存卡不可用");
+        }
     }
 }

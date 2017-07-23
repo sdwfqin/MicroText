@@ -12,8 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.blankj.utilcode.util.AppUtils;
 import com.sdwfqin.microtext.R;
-import com.sdwfqin.microtext.util.SystemUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,7 +47,7 @@ public class AboutActivity extends AppCompatActivity {
         mToolbarReturnText.setVisibility(View.VISIBLE);
         mToolbarTitle.setVisibility(View.VISIBLE);
         mToolbarTitle.setText("关于我们");
-        mAboutVersion.setText("V " + SystemUtil.getVersionName(this));
+        mAboutVersion.setText("V " + AppUtils.getAppVersionName());
 
     }
 

@@ -9,9 +9,14 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "2.0"
+        versionName "2.0.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            // 设置支持的SO库架构
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+        }
 
     }
     buildTypes {
@@ -23,7 +28,7 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -31,38 +36,42 @@ dependencies {
     compile "com.android.support:cardview-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:recyclerview-v7:$rootProject.ext.supportLibraryVersion"
     compile "com.android.support:design:$rootProject.ext.supportLibraryVersion"
-
+    // 万能的RecyclerViewAdapter
     compile "com.github.CymChad:BaseRecyclerViewAdapterHelper:$rootProject.ext.brvahVersion"
+    // 图片处理
     compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     compile "com.github.chrisbanes:PhotoView:$rootProject.ext.PhotoViewVersion"
-
     // 权限
-    compile"com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher"
+    compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher"
-
     // butterknife
     compile "com.jakewharton:butterknife:$rootProject.ext.butterknifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.butterknifeVersion"
-
     // dagger2
     compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
     annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-
     // retrofit2
     compile "com.squareup.retrofit2:retrofit:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:converter-gson:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:converter-scalars:$rootProject.ext.retrofitVersion"
     compile "com.squareup.retrofit2:adapter-rxjava2:$rootProject.ext.retrofitVersion"
-
+    // Okhttp3
     compile "com.squareup.okhttp3:okhttp:$rootProject.ext.okhttpVersion"
     compile "com.squareup.okhttp3:logging-interceptor:$rootProject.ext.okhttpVersion"
-
     // RxJava2
     compile "io.reactivex.rxjava2:rxandroid:$rootProject.ext.rxandroidVersion"
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
-
+    // Jsoup
     compile "org.jsoup:jsoup:$rootProject.ext.jsoupVersion"
-    compile 'com.makeramen:roundedimageview:2.3.0'
+    // 自定义Image形状
+    compile "com.makeramen:roundedimageview:$rootProject.ext.roundedimageview"
+    // 工具类
+    compile "com.blankj:utilcode:$rootProject.ext.utilcode"
+    // 腾讯Bugly
+    compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    // 腾讯浏览服务
+    compile files('libs/tbs_sdk_thirdapp.jar')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:support-v4:25.3.1'
     testCompile 'junit:junit:4.12'

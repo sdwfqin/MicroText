@@ -4,10 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -18,6 +14,9 @@ import com.sdwfqin.microtext.base.BaseActivity;
 import com.sdwfqin.microtext.contract.EssayContentContract;
 import com.sdwfqin.microtext.model.http.api.EssayApi;
 import com.sdwfqin.microtext.presenter.EssayContentPresenter;
+import com.tencent.smtt.sdk.WebChromeClient;
+import com.tencent.smtt.sdk.WebView;
+import com.tencent.smtt.sdk.WebViewClient;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -76,11 +75,11 @@ public class EssayContentActvity extends BaseActivity<EssayContentPresenter> imp
         mEssayWeb.getSettings().setDefaultTextEncodingName("UTF-8");
         mEssayWeb.loadDataWithBaseURL(EssayApi.HOST, data, "text/html", "UTF-8", null);
         // 监听WebView加载进度
-        mEssayWeb.setWebChromeClient(new WebChromeClient() {
+        mEssayWeb.setWebChromeClient(new WebChromeClient(){
             @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                if (newProgress == 100) {
+            public void onProgressChanged(WebView webView, int i) {
+                super.onProgressChanged(webView, i);
+                if (i == 100) {
                     mEssayProgress.setVisibility(View.GONE);
                     mEssayContent.setVisibility(View.VISIBLE);
                 }
@@ -89,7 +88,7 @@ public class EssayContentActvity extends BaseActivity<EssayContentPresenter> imp
         // 禁用页面中的超链接
         mEssayWeb.setWebViewClient(new WebViewClient(){
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+            public boolean shouldOverrideUrlLoading(WebView webView, String s) {
                 return true;
             }
         });

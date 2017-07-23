@@ -1,12 +1,12 @@
 package com.sdwfqin.microtext.di.module;
 
+import com.blankj.utilcode.util.NetworkUtils;
 import com.sdwfqin.microtext.BuildConfig;
 import com.sdwfqin.microtext.base.Constants;
 import com.sdwfqin.microtext.di.qualifier.EssayUrl;
 import com.sdwfqin.microtext.di.qualifier.JuZiMiUrl;
 import com.sdwfqin.microtext.model.http.api.EssayApi;
 import com.sdwfqin.microtext.model.http.api.JuZiMiApi;
-import com.sdwfqin.microtext.util.SystemUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -94,14 +94,14 @@ public class HttpModule {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 // 判断网络条件，如果有网络的话就直接获取网络上面的数据，如果没有网络就去缓存里面取数据
-                if (!SystemUtil.isNetworkConnected()) {
+                if (!NetworkUtils.isAvailableByPing()) {
                     request = request.newBuilder()
                             // 设置缓存策略
                             .cacheControl(CacheControl.FORCE_CACHE)
                             .build();
                 }
                 Response response = chain.proceed(request);
-                if (SystemUtil.isNetworkConnected()) {
+                if (NetworkUtils.isAvailableByPing()) {
                     // 有网络时, 不缓存, 最大保存时长为0
                     int maxAge = 0;
                     response.newBuilder()

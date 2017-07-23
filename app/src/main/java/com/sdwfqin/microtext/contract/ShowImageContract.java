@@ -10,8 +10,6 @@ public interface ShowImageContract {
 
     interface View extends BaseView {
 
-        void saveImage();
-
     }
 
     interface Presenter extends BasePresenter<View> {

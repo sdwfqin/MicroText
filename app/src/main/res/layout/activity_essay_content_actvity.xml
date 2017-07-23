@@ -43,7 +43,7 @@
         android:orientation="vertical"
         android:visibility="gone">
 
-        <WebView
+        <com.tencent.smtt.sdk.WebView
             android:id="@+id/essaycontent_web"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
