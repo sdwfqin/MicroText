@@ -2,6 +2,7 @@ package com.sdwfqin.microtext.base;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
 import com.sdwfqin.microtext.di.component.AppComponent;
 import com.sdwfqin.microtext.di.component.DaggerAppComponent;
 import com.sdwfqin.microtext.di.module.AppModule;
@@ -27,6 +28,8 @@ public class App extends Application {
 
         // 腾讯Bugly
         CrashReport.initCrashReport(getApplicationContext(), "53e067220d", false);
+        // 初始化工具类
+        Utils.init(this);
     }
 
     public static AppComponent getAppComponent() {

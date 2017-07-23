@@ -21,7 +21,7 @@
     <style name="wode_tiaomu">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
-        <item name="android:background">#ffffff</item>
+        <item name="android:background">?android:attr/selectableItemBackground</item>
     </style>
     <!-- 我的界面条目内文字 -->
     <style name="wode_tiaomu_wenzi">

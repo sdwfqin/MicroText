@@ -2,6 +2,7 @@ package com.sdwfqin.microtext.ui.about;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.MutableContextWrapper;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
