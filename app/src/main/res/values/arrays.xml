@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="version_code">
+        <item>1.0.0</item>
+        <item>1.1.0</item>
+        <item>1.1.3</item>
+        <item>1.1.5</item>
+        <item>1.2.0</item>
+        <item>1.3.0</item>
+        <item>1.3.1</item>
+        <item>2.0.0</item>
+    </string-array>
+
+    <string-array name="version_des">
+        <item>1. 第一版发布，欢迎大家提供反馈建议\n2. 微小文，一款美丽清新的开源阅读软件，搜集网上的短篇散文故事、插图等图文数据与大家共享。</item>
+        <item>1. Bug修复\n2. 修复在某些情况下加载完图片进度条不消失。</item>
+        <item>1. 修复散文页面数据源</item>
+        <item>1. 修复首页数据源</item>
+        <item>1. 修复首页数据源\n2. 更换网络请求框架</item>
+        <item>1. 修复Android6.0+存储图片</item>
+        <item>1. 修复数据编码\n2. 修复图片没有说明文字时仍然显示文字框</item>
+        <item>1. 架构全新升级，采用当前主流的Mvp+RxJava+Retrofit+Dagger2设计模式\n2. 界面优化</item>
+    </string-array>
+</resources>

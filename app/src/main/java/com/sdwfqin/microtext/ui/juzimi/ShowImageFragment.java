@@ -141,27 +141,28 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
         if (SDCardUtils.isSDCardEnable()) {
             BitmapDrawable bitmapDrawable = null;
             try {
+                // TODO:第二张图滑动到第一张图会找不到图片，保存图片会错乱，可能跟viewpager缓存有关
                 bitmapDrawable = (BitmapDrawable) showimageImg.getDrawable();
-            } catch (Exception e) {
-                ToastUtils.showShort("保存失败");
-            }
-            String file = Constants.SAVE_REAL_PATH + mImageUrl.substring(mImageUrl.lastIndexOf("/"));
-            if (FileUtils.createOrExistsFile(file)) {
-                byte[] bitmap2Bytes = ImageUtils.bitmap2Bytes(bitmapDrawable.getBitmap(), Bitmap.CompressFormat.JPEG);
-                if (FileIOUtils.writeFileFromBytesByStream(file, bitmap2Bytes)) {
-                    Snackbar.make(mView, "图片已保存至：" + Constants.SAVE_REAL_PATH, Snackbar.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-                    Uri uri = Uri.fromFile(new File(Constants.SAVE_REAL_PATH));
-                    intent.setData(uri);
-                    mContext.sendBroadcast(intent);
+                String file = Constants.SAVE_REAL_PATH + mImageUrl.substring(mImageUrl.lastIndexOf("/"));
+                if (FileUtils.createOrExistsFile(file)) {
+                    byte[] bitmap2Bytes = ImageUtils.bitmap2Bytes(bitmapDrawable.getBitmap(), Bitmap.CompressFormat.JPEG);
+                    if (FileIOUtils.writeFileFromBytesByStream(file, bitmap2Bytes)) {
+                        Snackbar.make(mView, "图片已保存至：" + Constants.SAVE_REAL_PATH, Snackbar.LENGTH_SHORT).show();
+                        Intent intent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                        Uri uri = Uri.fromFile(new File(Constants.SAVE_REAL_PATH));
+                        intent.setData(uri);
+                        mContext.sendBroadcast(intent);
+                    } else {
+                        Toast.makeText(mActivity, "保存失败", Toast.LENGTH_SHORT).show();
+                    }
                 } else {
-                    ToastUtils.showShort("保存失败");
+                    Toast.makeText(mActivity, "保存失败", Toast.LENGTH_SHORT).show();
                 }
-            } else {
-                ToastUtils.showShort("保存失败");
+            } catch (Exception e) {
+                Toast.makeText(mActivity, "保存失败", Toast.LENGTH_SHORT).show();
             }
         } else {
-            ToastUtils.showShort("内存卡不可用");
+            Toast.makeText(mActivity, "内存卡不可用", Toast.LENGTH_SHORT).show();
         }
     }
 }
