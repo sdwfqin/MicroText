@@ -9,9 +9,7 @@ import com.sdwfqin.microtext.base.BaseView;
 public interface SplashContract {
 
     interface View extends BaseView {
-
         void enterHome();
-
     }
 
     interface Presenter extends BasePresenter<View> {

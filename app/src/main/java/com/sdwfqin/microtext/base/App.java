@@ -7,7 +7,6 @@ import com.sdwfqin.microtext.di.component.AppComponent;
 import com.sdwfqin.microtext.di.component.DaggerAppComponent;
 import com.sdwfqin.microtext.di.module.AppModule;
 import com.sdwfqin.microtext.di.module.HttpModule;
-import com.tencent.bugly.Bugly;
 
 /**
  * Created by sdwfqin on 2017/6/9.

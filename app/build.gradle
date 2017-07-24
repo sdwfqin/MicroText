@@ -36,6 +36,8 @@ dependencies {
     // 图片处理
     compile "com.squareup.picasso:picasso:$rootProject.ext.picassoVersion"
     compile "com.github.chrisbanes:PhotoView:$rootProject.ext.PhotoViewVersion"
+    // 自定义Image形状
+    compile "com.makeramen:roundedimageview:$rootProject.ext.roundedimageview"
     // 权限
     compile "com.github.hotchemi:permissionsdispatcher:$rootProject.ext.permissionsdispatcher"
     annotationProcessor "com.github.hotchemi:permissionsdispatcher-processor:$rootProject.ext.permissionsdispatcher"
@@ -58,8 +60,6 @@ dependencies {
     compile "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxjavaVersion"
     // Jsoup
     compile "org.jsoup:jsoup:$rootProject.ext.jsoupVersion"
-    // 自定义Image形状
-    compile "com.makeramen:roundedimageview:$rootProject.ext.roundedimageview"
     // 工具类
     compile "com.blankj:utilcode:$rootProject.ext.utilcode"
     // 腾讯Bugly

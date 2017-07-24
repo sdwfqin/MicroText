@@ -1,6 +1,7 @@
 package com.sdwfqin.microtext.base;
 
 import com.blankj.utilcode.util.SDCardUtils;
+import com.blankj.utilcode.util.Utils;
 
 import java.io.File;
 
@@ -10,7 +11,7 @@ public class Constants {
     /**
      * 路径：/data/data/com.sdwfqin.microtext/cache/data
      */
-    public static final String PATH_DATA = App.getInstance().getCacheDir().getAbsolutePath() + File.separator + "data";
+    public static final String PATH_DATA = Utils.getContext().getCacheDir() + "/data";
 
     /**
      * 路径：/data/data/com.sdwfqin.microtext/cache/data/NetCache

@@ -2,10 +2,10 @@ package com.sdwfqin.microtext.ui.about;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.MutableContextWrapper;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
@@ -14,7 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blankj.utilcode.util.AppUtils;
+import com.blankj.utilcode.util.FileUtils;
 import com.sdwfqin.microtext.R;
+import com.sdwfqin.microtext.base.Constants;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +40,12 @@ public class AboutActivity extends AppCompatActivity {
     RelativeLayout mAboutMe;
     @BindView(R.id.about_project)
     RelativeLayout mAboutProject;
+    @BindView(R.id.about_cache_size)
+    TextView aboutCacheSize;
+    @BindView(R.id.about_cache)
+    RelativeLayout aboutCache;
+    @BindView(R.id.card_view)
+    CardView cardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,32 +57,38 @@ public class AboutActivity extends AppCompatActivity {
         mToolbarTitle.setVisibility(View.VISIBLE);
         mToolbarTitle.setText("关于我们");
         mAboutVersion.setText("V " + AppUtils.getAppVersionName());
+        aboutCacheSize.setText(FileUtils.getDirSize(Constants.PATH_CACHE));
 
     }
 
-    @OnClick({R.id.toolbar_return_text,R.id.about_update, R.id.about_haoping, R.id.about_me, R.id.about_project})
+    @OnClick({R.id.toolbar_return_text, R.id.about_cache, R.id.about_update, R.id.about_haoping, R.id.about_me, R.id.about_project})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.toolbar_return_text:
                 finish();
                 break;
             case R.id.about_update:
-                //startActivity(new Intent(this,AboutVersionActivity.class));
+                startActivity(new Intent(this, AboutVersionActivity.class));
+                break;
+            case R.id.about_cache:
+                FileUtils.deleteFilesInDir(Constants.PATH_CACHE);
+                aboutCacheSize.setText(FileUtils.getDirSize(Constants.PATH_CACHE));
                 break;
             case R.id.about_haoping:
-                marketDownload(this,"com.sdwfqin.microtext");
+                marketDownload(this, "com.sdwfqin.microtext");
                 break;
             case R.id.about_me:
-                //startActivity(new Intent(this,AboutMeActivity.class));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.sdwfqin.com/about/")));
                 break;
             case R.id.about_project:
-                //startActivity(new Intent(this,AboutProjectActivity.class));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/sdwfqin/MicroText")));
                 break;
         }
     }
 
     /**
      * 前往市场
+     *
      * @param activity
      * @param packageName
      */

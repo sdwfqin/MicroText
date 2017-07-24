@@ -12,6 +12,7 @@ import java.util.List;
 public interface EssayContract {
 
     interface View extends BaseView {
+
         void showProgress();
 
         void hideProgress();
@@ -24,6 +25,7 @@ public interface EssayContract {
     }
 
     interface Presenter extends BasePresenter<View> {
+
         void initData(String page, int pageId);
 
         void refreshData(String page, int pageId);
