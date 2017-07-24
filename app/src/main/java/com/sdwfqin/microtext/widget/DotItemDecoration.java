@@ -1,4 +1,4 @@
-package com.sdwfqin.microtext.widget.itemdecoration;
+package com.sdwfqin.microtext.widget;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -40,6 +40,10 @@ public class DotItemDecoration extends RecyclerView.ItemDecoration {
     @IntDef({STYLE_DRAW, STYLE_RESOURCE})
     public @interface ItemStyle {
 
+    }
+
+    public interface SpanIndexListener {
+        void onSpanIndexChange(View view, int spanIndex);
     }
 
     public static final int HORIZONTAL = 0;

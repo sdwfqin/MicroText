@@ -3,8 +3,6 @@ package com.sdwfqin.microtext.ui.about;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -16,13 +14,15 @@ import android.widget.Toast;
 import com.blankj.utilcode.util.AppUtils;
 import com.blankj.utilcode.util.FileUtils;
 import com.sdwfqin.microtext.R;
+import com.sdwfqin.microtext.base.BaseActivity;
 import com.sdwfqin.microtext.base.Constants;
+import com.sdwfqin.microtext.contract.AboutContract;
+import com.sdwfqin.microtext.presenter.AboutPresenter;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AboutActivity extends AppCompatActivity {
+public class AboutActivity extends BaseActivity<AboutPresenter> implements AboutContract.View {
 
     @BindView(R.id.about_version)
     TextView mAboutVersion;
@@ -48,17 +48,22 @@ public class AboutActivity extends AppCompatActivity {
     CardView cardView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
-        ButterKnife.bind(this);
+    protected void initInject() {
+        getActivityComponent().inject(this);
+    }
 
+    @Override
+    protected int getLayout() {
+        return R.layout.activity_about;
+    }
+
+    @Override
+    protected void initEventAndData() {
         mToolbarReturnText.setVisibility(View.VISIBLE);
         mToolbarTitle.setVisibility(View.VISIBLE);
         mToolbarTitle.setText("关于我们");
         mAboutVersion.setText("V " + AppUtils.getAppVersionName());
         aboutCacheSize.setText(FileUtils.getDirSize(Constants.PATH_CACHE));
-
     }
 
     @OnClick({R.id.toolbar_return_text, R.id.about_cache, R.id.about_update, R.id.about_haoping, R.id.about_me, R.id.about_project})
@@ -86,12 +91,7 @@ public class AboutActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 前往市场
-     *
-     * @param activity
-     * @param packageName
-     */
+    @Override
     public void marketDownload(Activity activity, String packageName) {
         try {
             Intent intent = new Intent("android.intent.action.VIEW");
