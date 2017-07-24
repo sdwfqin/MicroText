@@ -47,14 +47,15 @@ public class JuZiMiPresenter extends RxPresenter<JuZiMiContract.View> implements
                     @Override
                     public void accept(@NonNull List<JuZiMiBean> beanList) throws Exception {
                         mView.setData(beanList);
+                        mView.hideProgress();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         mView.showErrorMsg("网络错误！");
+                        mView.hideProgress();
                     }
                 }));
-        mView.hideProgress();
     }
 
     @Override
@@ -71,14 +72,15 @@ public class JuZiMiPresenter extends RxPresenter<JuZiMiContract.View> implements
                     @Override
                     public void accept(@NonNull List<JuZiMiBean> beanList) throws Exception {
                         mView.refreshData(beanList);
+                        mView.hideProgress();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         mView.showErrorMsg("网络错误！");
+                        mView.hideProgress();
                     }
                 }));
-        mView.hideProgress();
     }
 
     @Override

@@ -46,14 +46,15 @@ public class EssayPresenter extends RxPresenter<EssayContract.View> implements E
                     @Override
                     public void accept(@NonNull List<EssayBean> beanList) throws Exception {
                         mView.setData(beanList);
+                        mView.hideProgress();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         mView.showErrorMsg("网络错误！");
+                        mView.hideProgress();
                     }
                 }));
-        mView.hideProgress();
     }
 
     @Override
@@ -69,14 +70,15 @@ public class EssayPresenter extends RxPresenter<EssayContract.View> implements E
                     @Override
                     public void accept(@NonNull List<EssayBean> beanList) throws Exception {
                         mView.refreshData(beanList);
+                        mView.hideProgress();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(@NonNull Throwable throwable) throws Exception {
                         mView.showErrorMsg("网络错误！");
+                        mView.hideProgress();
                     }
                 }));
-        mView.hideProgress();
     }
 
     @Override
