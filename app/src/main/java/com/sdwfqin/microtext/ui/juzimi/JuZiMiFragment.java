@@ -112,12 +112,8 @@ public class JuZiMiFragment extends BaseFragment<JuZiMiPresenter> implements JuZ
         }, juzimiRecycler);
 
         juzimiSrl.setOnRefreshListener(this);
-    }
 
-    @Override
-    public void onResume() {
         mPresenter.initData(url, pageId++, hasTitle);
-        super.onResume();
     }
 
     @Override
