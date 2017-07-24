@@ -76,8 +76,6 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
     @Override
     protected void initEventAndData() {
 
-        initMenuClick();
-
         if (getArguments() != null) {
             mJuZiMiBean = (JuZiMiBean) getArguments().getSerializable("mainList");
             position = getArguments().getInt("position", 0);
@@ -115,6 +113,15 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
         });
     }
 
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible || isLoad) {
+            return;
+        }
+        initMenuClick();
+        // isLoad = true;
+    }
+
     /**
      * 使用Activity中toolbar的menu
      */
@@ -141,7 +148,6 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
         if (SDCardUtils.isSDCardEnable()) {
             BitmapDrawable bitmapDrawable = null;
             try {
-                // TODO:第二张图滑动到第一张图会找不到图片，保存图片会错乱，可能跟viewpager缓存有关
                 bitmapDrawable = (BitmapDrawable) showimageImg.getDrawable();
                 String file = Constants.SAVE_REAL_PATH + mImageUrl.substring(mImageUrl.lastIndexOf("/"));
                 if (FileUtils.createOrExistsFile(file)) {

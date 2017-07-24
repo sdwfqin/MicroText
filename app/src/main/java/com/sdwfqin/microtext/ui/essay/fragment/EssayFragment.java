@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,6 +31,7 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
     RecyclerView essayRecycler;
     @BindView(R.id.essay_srl)
     SwipeRefreshLayout essaySrl;
+    private static final String TAG = "EssayFragment";
 
     private int code;
     private String url;
@@ -57,11 +59,12 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
 
     @Override
     protected void initEventAndData() {
-
         if (getArguments() != null) {
             code = getArguments().getInt("code");
             url = Constants.ESSAY_URL[code];
         }
+
+        Log.e(TAG, "initEventAndData: " + code);
 
         essaySrl.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light,
                 android.R.color.holo_orange_light, android.R.color.holo_green_light);
@@ -100,9 +103,13 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
     }
 
     @Override
-    public void onResume() {
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible || isLoad) {
+            return;
+        }
+        // 加载数据
         mPresenter.initData(url, pageId++);
-        super.onResume();
+        isLoad = true;
     }
 
     @Override

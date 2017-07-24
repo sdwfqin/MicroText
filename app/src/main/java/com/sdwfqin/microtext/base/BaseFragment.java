@@ -32,6 +32,18 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     protected Activity mActivity;
     protected Context mContext;
     protected LayoutInflater mInflater;
+    /**
+     * 标志位，标志已经初始化完成。
+     */
+    protected boolean isPrepared;
+    /**
+     * 当前界面是否可见
+     */
+    protected boolean isVisible;
+    /**
+     * 是否加载过
+     */
+    protected boolean isLoad = false;
     private Unbinder mUnBinder;
 
     protected FragmentComponent getFragmentComponent(){
@@ -43,6 +55,24 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
 
     protected FragmentModule getFragmentModule(){
         return new FragmentModule(this);
+    }
+
+    /**
+     * Fragment的UI是否是可见
+     * <p>
+     * 在onCreateView方法之前调用
+     *
+     * @param isVisibleToUser
+     */
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            isVisible = true;
+            lazyLoad();
+        } else {
+            isVisible = false;
+        }
     }
 
     @Override
@@ -68,6 +98,9 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         mPresenter.attachView(this);
         mInflater = getLayoutInflater(savedInstanceState);
         initEventAndData();
+        // 界面加载完成
+        isPrepared = true;
+        lazyLoad();
     }
 
     @Override
@@ -96,4 +129,11 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
      * 加载数据
      */
     protected abstract void initEventAndData();
+
+    /**
+     * 页面懒加载
+     */
+    protected void lazyLoad(){
+
+    }
 }
