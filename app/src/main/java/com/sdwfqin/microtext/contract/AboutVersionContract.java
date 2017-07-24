@@ -12,11 +12,9 @@ import java.util.List;
 public interface AboutVersionContract {
 
     interface View extends BaseView {
-        void setData(List<VersionBean> beanList);
     }
 
     interface Presenter extends BasePresenter<View> {
-        void initData(String[] code, String[] des);
     }
 
 }

@@ -144,4 +144,10 @@ public class EssayFragment extends BaseFragment<EssayPresenter> implements Essay
         mPresenter.refreshData(url, 1);
         pageId = 2;
     }
+
+    @Override
+    public void onDestroyView() {
+        isLoad = false;
+        super.onDestroyView();
+    }
 }

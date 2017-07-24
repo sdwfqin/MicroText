@@ -14,6 +14,7 @@ import com.sdwfqin.microtext.model.bean.VersionBean;
 import com.sdwfqin.microtext.presenter.AboutVersionPresenter;
 import com.sdwfqin.microtext.widget.DotItemDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -47,6 +48,17 @@ public class AboutVersionActivity extends BaseActivity<AboutVersionPresenter> im
         toolbarTitle.setVisibility(View.VISIBLE);
         toolbarTitle.setText("版本信息");
 
+        String[] code = getResources().getStringArray(R.array.version_code);
+        String[] des = getResources().getStringArray(R.array.version_des);
+
+        List<VersionBean> beanList = new ArrayList<VersionBean>();
+        for (int i = code.length - 1; i >= 0; i--) {
+            VersionBean versionBean = new VersionBean();
+            versionBean.setCode(code[i]);
+            versionBean.setDes(des[i]);
+            beanList.add(versionBean);
+        }
+
         staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         versionRecycler.setLayoutManager(staggeredGridLayoutManager);
         dotItemDecoration = new DotItemDecoration
@@ -75,18 +87,8 @@ public class AboutVersionActivity extends BaseActivity<AboutVersionPresenter> im
         });
         versionRecycler.addItemDecoration(dotItemDecoration);
 
-        aboutVersionAdapter = new AboutVersionAdapter(R.layout.items_version, null);
+        aboutVersionAdapter = new AboutVersionAdapter(R.layout.items_version, beanList);
         versionRecycler.setAdapter(aboutVersionAdapter);
-
-        String[] code = getResources().getStringArray(R.array.version_code);
-        String[] des = getResources().getStringArray(R.array.version_des);
-
-        mPresenter.initData(code, des);
-    }
-
-    @Override
-    public void setData(List<VersionBean> beanList) {
-        aboutVersionAdapter.setNewData(beanList);
     }
 
     @OnClick(R.id.toolbar_return_text)

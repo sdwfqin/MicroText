@@ -42,10 +42,6 @@ public class DotItemDecoration extends RecyclerView.ItemDecoration {
 
     }
 
-    public interface SpanIndexListener {
-        void onSpanIndexChange(View view, int spanIndex);
-    }
-
     public static final int HORIZONTAL = 0;
     public static final int VERTICAL = 1;
 
@@ -54,6 +50,10 @@ public class DotItemDecoration extends RecyclerView.ItemDecoration {
     @IntDef({VERTICAL, HORIZONTAL})
     public @interface Orientation {
 
+    }
+
+    public interface SpanIndexListener {
+        void onSpanIndexChange(View view, int spanIndex);
     }
 
     @ItemStyle
