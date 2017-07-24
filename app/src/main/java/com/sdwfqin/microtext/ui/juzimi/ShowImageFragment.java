@@ -139,7 +139,12 @@ public class ShowImageFragment extends BaseFragment<ShowImagePresenter> implemen
      */
     public void saveImage() {
         if (SDCardUtils.isSDCardEnable()) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) showimageImg.getDrawable();
+            BitmapDrawable bitmapDrawable = null;
+            try {
+                bitmapDrawable = (BitmapDrawable) showimageImg.getDrawable();
+            } catch (Exception e) {
+                ToastUtils.showShort("保存失败");
+            }
             String file = Constants.SAVE_REAL_PATH + mImageUrl.substring(mImageUrl.lastIndexOf("/"));
             if (FileUtils.createOrExistsFile(file)) {
                 byte[] bitmap2Bytes = ImageUtils.bitmap2Bytes(bitmapDrawable.getBitmap(), Bitmap.CompressFormat.JPEG);

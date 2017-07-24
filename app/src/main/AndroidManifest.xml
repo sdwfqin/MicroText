@@ -27,7 +27,24 @@
         <activity android:name=".ui.main.MainActivity" />
         <activity android:name=".ui.essay.activity.EssayContentActvity" />
         <activity android:name=".ui.about.AboutActivity" />
-        <activity android:name=".ui.juzimi.ShowImageActivity"></activity>
+        <activity android:name=".ui.juzimi.ShowImageActivity"/>
+
+        <!-- 腾讯BugLy自动更新 -->
+        <activity
+            android:name="com.tencent.bugly.beta.ui.BetaActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|locale"
+            android:theme="@android:style/Theme.Translucent" />
+
+        <!-- 兼容Android N或者以上的设备 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.fileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
     </application>
 
 </manifest>

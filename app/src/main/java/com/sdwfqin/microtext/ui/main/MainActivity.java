@@ -4,7 +4,10 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -26,6 +29,7 @@ import com.sdwfqin.microtext.presenter.MainPresenter;
 import com.sdwfqin.microtext.ui.about.AboutActivity;
 import com.sdwfqin.microtext.ui.essay.fragment.EssayMainFragment;
 import com.sdwfqin.microtext.ui.juzimi.JuZiMiFragment;
+import com.tencent.bugly.Bugly;
 
 import butterknife.BindView;
 import permissions.dispatcher.NeedsPermission;
@@ -48,6 +52,15 @@ public class MainActivity extends BaseActivity<MainPresenter> implements MainCon
     DrawerLayout mDrawer;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private long exitTime = 0;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // 腾讯Bugly
+        // true表示打开debug模式，false表示关闭调试模式
+        Bugly.init(getApplicationContext(), "53e067220d", false);
+    }
 
     @Override
     protected void initInject() {
