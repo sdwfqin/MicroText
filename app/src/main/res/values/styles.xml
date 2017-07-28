@@ -12,6 +12,12 @@
         <item name="actionMenuTextAppearance">@style/MenuTextStyle</item>
     </style>
 
+    <!--splash中删掉了背景图-->
+    <style name="AppTheme.Launcher" parent="AppTheme">
+        <!--<item name="android:background">@drawable/splash_bg</item>-->
+        <item name="android:windowBackground">@drawable/branded_launch_screens</item>
+    </style>
+
     <!-- menu字体大小 -->
     <style name="MenuTextStyle">
         <item name="android:textSize">18sp</item>
